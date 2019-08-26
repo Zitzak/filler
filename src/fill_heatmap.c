@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:23 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 17:15:02 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 16:57:13 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,45 +116,13 @@ void		heatmap_from_down(t_hmap *heatmap)
 	}
 }
 
-void		change_heatmap(t_hmap *heatmap, int n, int x, int y)
-{
-	if (heatmap->map[x - 1][y - 1] == 0 && x != 0 && y != 0)
-		heatmap->map[x - 1][y - 1] = n;
-	if (heatmap->map[x][y - 1] == 0 && y != 0)
-		heatmap->map[x][y - 1] = n;
-	if (heatmap->map[x + 1][y - 1] == 0 && x != (heatmap->size_x - 1) && y != 0)
-		heatmap->map[x + 1][y - 1] = n;
-	if (heatmap->map[x + 1][y] == 0 && x != (heatmap->size_x - 1))
-		heatmap->map[x + 1][y] = n;
-	if (heatmap->map[x + 1][y + 1] == 0 && x != (heatmap->size_x - 1) && y != 
-		(heatmap->size_y - 1))
-		heatmap->map[x + 1][y + 1] = n;
-	if (heatmap->map[x][y + 1] == 0 && y != (heatmap->size_y - 1))
-		heatmap->map[x][y + 1] = n;
-	if (heatmap->map[x - 1][y + 1] == 0 && x != 0 && y != (heatmap->size_y - 1))
-		heatmap->map[x - 1][y + 1] = n;
-	if (heatmap->map[x - 1][y] == 0 && x != 0)
-		heatmap->map[x - 1][y] = n;
-}
-
 void		heatmap_to_enemy(t_hmap *heatmap)
 {
-	int		x;
-	int		y;
 	int		n;
 
-	x = 0;
-	while (x < heatmap->size_x)
+	n = 1;
+	while (direct_change_heatmap(heatmap, n))
 	{
-		y = 0;
-		while (y < heatmap->size_y)
-		{
-			if (heatmap->map[x][y] < 0)
-			{
-				change_heatmap(heatmap, n, x, y);
-			}
-			y++;
-		}
+		n++;
 	}
-
 }

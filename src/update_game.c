@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:44 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 14:03:19 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 17:03:48 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		update_game(t_info *filler, t_hmap *heatmap)
 	initializing_var_struct(filler, heatmap);
 	update_field(filler);
 	update_enemy(filler, heatmap);
-	update_heatmap(heatmap);
+	update_heatmap(filler, heatmap);
 	update_piece(filler, heatmap);
 	print_test(filler, heatmap);// <-----
 }

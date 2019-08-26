@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 11:37:10 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 16:51:30 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ void	print_test(t_info *filler, t_hmap *heatmap)
 		ft_dprintf(filler->fd, "[%s]\n", filler->field[i]);
 		i++;
 	}
-	i = 0;
-	ft_dprintf(filler->fd, "\n[first_star: %d]\n[last_star: %d]\n[num lines: %d]\n[num collums: %d]\n[start: %d]\n",
-		filler->first_star, filler->last_star, filler->lines_piece, filler->collums_piece, filler->start);
-	ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", filler->piece_x, filler->piece_y);
-	while (filler->temp_piece[i] != NULL)//
-	{
-		ft_dprintf(filler->fd, "[%s]\n", filler->temp_piece[i]);//
-		i++;
-	}
-	i = 0;
-	ft_dprintf(filler->fd, "\nPiece cut\n");
-	while (filler->piece[i] != NULL)
-	{
-		ft_dprintf(filler->fd, "[%s]\n", filler->piece[i]);
-		i++;
-	}
+	// i = 0;
+	// ft_dprintf(filler->fd, "\n[first_star: %d]\n[last_star: %d]\n[num lines: %d]\n[num collums: %d]\n[start: %d]\n",
+	// 	filler->first_star, filler->last_star, filler->lines_piece, filler->collums_piece, filler->start);
+	// ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", filler->piece_x, filler->piece_y);
+	// while (filler->temp_piece[i] != NULL)//
+	// {
+	// 	ft_dprintf(filler->fd, "[%s]\n", filler->temp_piece[i]);//
+	// 	i++;
+	// }
+	// i = 0;
+	// ft_dprintf(filler->fd, "\nPiece cut\n");
+	// while (filler->piece[i] != NULL)
+	// {
+	// 	ft_dprintf(filler->fd, "[%s]\n", filler->piece[i]);
+	// 	i++;
+	// }
 	i = 0;
 	// free(heatmap);
 	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piecer[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
@@ -51,7 +51,18 @@ void	print_test(t_info *filler, t_hmap *heatmap)
 		y = 0;
 		while (y < filler->field_y)
 		{
-			ft_dprintf(filler->fd, "%i", heatmap->map[i][y]);
+			if (heatmap->map[i][y] < 0)
+				ft_dprintf(filler->fd, " %i", heatmap->map[i][y]);
+			else if (heatmap->map[i][y] > -1 && heatmap->map[i][y] < 10)
+			{
+				ft_dprintf(filler->fd, "  %i", heatmap->map[i][y]);
+			}
+			else
+			{
+				ft_dprintf(filler->fd, " %i", heatmap->map[i][y]);
+			}
+			
+			
 			y++;
 		}
 		ft_dprintf(filler->fd, "\n");
@@ -72,10 +83,10 @@ int		main(void)//moet errors handelen van malloc
 	t_info			*filler;
 	t_hmap			*heatmap;
 
-	filler = malloc(sizeof(t_info));
-	heatmap = malloc(sizeof(t_hmap));
+	filler = malloc(sizeof(t_info));// error if NULL
+	heatmap = malloc(sizeof(t_hmap));// error if NULL
 	filler->fd = open("../input.txt", O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);// <-----
-	first_call(filler, heatmap);
+	first_input(filler, heatmap);
 	main_control(filler, heatmap);
 	return (0);
 }

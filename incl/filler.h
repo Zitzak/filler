@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 16:21:08 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 17:04:59 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_info
 }				t_info;
 
 void	print_test(t_info *filler, t_hmap *heatmap);// <---------------
-void	first_call(t_info *filler, t_hmap *heatmap);
+void	first_input(t_info *filler, t_hmap *heatmap);
 void	get_token(t_info *filler);
 void	update_field(t_info *filler);
 int		create_field(t_info *filler, t_hmap *heatmap);
@@ -69,7 +69,7 @@ void	error(t_info *filler, t_hmap *heatmap);
 void	main_control(t_info *filler, t_hmap *heatmap);
 void	find_first_piece(t_info *filler);
 int		create_heatmap(t_hmap *heatmap);
-void	update_heatmap(t_hmap *heatmap);
+void	update_heatmap(t_info *filler, t_hmap *heatmap);
 void	update_placement_enemy(t_info *filler, t_hmap *heatmap);
 void	update_map(t_info *filler, t_hmap *heatmap);
 void	update_strategy(t_hmap *heatmap);
@@ -80,6 +80,8 @@ void	heatmap_from_down(t_hmap *heatmap);
 void	heatmap_from_up(t_hmap *heatmap);
 void	heatmap_from_right(t_hmap *heatmap);
 void	heatmap_from_left(t_hmap *heatmap);
-// void	heatmap_to_enemy(t_hmap *heatmap);
+int		direct_change_heatmap(t_hmap *heatmap, int n);
+void	heatmap_to_enemy(t_hmap *heatmap);
+void	replace_pieces_of_self(t_info *filler, t_hmap *heatmap);
 
 #endif

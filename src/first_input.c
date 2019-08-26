@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 11:25:47 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 15:47:48 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		get_token(t_info *filler)
 	}
 }
 
-void		first_call(t_info *filler, t_hmap *heatmap)
+void		first_input(t_info *filler, t_hmap *heatmap)
 {
 	filler->start = -1;// deze moet nog ergens anders
 	heatmap->enemy_num = 0;// moet nog weg hier

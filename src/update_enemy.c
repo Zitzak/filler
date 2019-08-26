@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 12:15:51 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 16:17:08 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void		get_direction(t_hmap *heatmap)
 		y = 0;
 		while (y < heatmap->size_y)
 		{
-			if (heatmap->map[x][y] == heatmap->enemy_num && heatmap->last_piece_x == -1)
+			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && heatmap->last_piece_x == -1)
 			{
 				heatmap->last_piece_x = x;
 				heatmap->last_piece_y = y;
 			}
-			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && heatmap->current_piece_x == -1)
+			if (heatmap->map[x][y] == (heatmap->enemy_num) && heatmap->current_piece_x == -1)
 			{
 				heatmap->current_piece_x = x;
 				heatmap->current_piece_y = y;
@@ -56,6 +56,8 @@ void		get_direction(t_hmap *heatmap)
 			y++;
 		}
 		x++;
+		if (heatmap->last_piece_x != -1 && heatmap->current_piece_x != -1)
+			return ;
 	}
 }
 
