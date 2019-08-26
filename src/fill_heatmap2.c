@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 15:43:16 by Marvin         #+#    #+#                */
-/*   Updated: 2019/08/26 16:55:13 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/26 20:28:59 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		change_heatmap(t_hmap *heatmap, int n, int x, int y)
 			heatmap->map[x - 1][y] = n;
 }
 
-int			direct_change_heatmap(t_hmap *heatmap, int n)
+int			redirect_heatmap_to_enemy(t_hmap *heatmap, int n)
 {
 	int		x;
 	int		y;

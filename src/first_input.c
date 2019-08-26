@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 15:47:48 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/26 21:35:59 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-int		create_field(t_info *filler, t_hmap *heatmap)
+int		create_field(t_fie *filler, t_hmap *heatmap)
 {
 	int		i;
 
@@ -29,7 +29,6 @@ int		create_field(t_info *filler, t_hmap *heatmap)
 	heatmap->size_y = filler->field_y;
 	if (ft_mem_array_alloc(&filler->field, filler->field_x) == -1)
 		return (-1);
-	filler->field[filler->field_x] = NULL;
 	return (0);
 }
 
@@ -58,26 +57,31 @@ int		create_heatmap(t_hmap *heatmap)
 	return (0);
 }
 
-void		get_token(t_info *filler)
+void		get_token(t_fie *filler)
 {
 	ft_get_next_line(0, &filler->line);
 	filler->line = ft_strstr((const char*)filler->line, (const char*)"p1");
 	if (filler->line == NULL)
 	{
 		filler->me = 'X';
-		filler->other = 'O';
+		filler->enemy = 'O';
 	}
 	else
 	{
 		filler->me = 'O';
-		filler->other = 'X';
+		filler->enemy = 'X';
 	}
 }
 
-void		first_input(t_info *filler, t_hmap *heatmap)
+void		init_var_first_input(t_fie *filler, t_hmap *heatmap)
 {
-	filler->start = -1;// deze moet nog ergens anders
-	heatmap->enemy_num = 0;// moet nog weg hier
+	filler->start = -1;
+	heatmap->enemy_num = -1;
+}
+
+void		first_input(t_fie *filler, t_hmap *heatmap)
+{
+	init_var_first_input(filler, heatmap);
 	get_token(filler);
 	if (create_field(filler, heatmap) == -1)
 		error (filler, heatmap);

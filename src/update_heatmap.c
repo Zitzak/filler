@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:21:55 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 17:03:36 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/26 21:35:36 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		heatmap_to_zero(t_hmap *heatmap)
 	}
 }
 
-void		replace_pieces_of_self(t_info *filler, t_hmap *heatmap)
+void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
 {
 	int		x;
 	int		y;
@@ -52,11 +52,11 @@ void		replace_pieces_of_self(t_info *filler, t_hmap *heatmap)
 	}
 }
 
-void		update_heatmap(t_info *filler, t_hmap *heatmap)
+void		update_heatmap(t_fie *filler, t_hmap *heatmap)
 {
 	heatmap_to_zero(heatmap);
 	//choose how to fill in heatmap depending on strategy
-	// heatmap_from_down(heatmap);
-	heatmap_to_enemy(heatmap);
+	heatmap_from_down(heatmap);
+	// heatmap_to_enemy(heatmap);
 	replace_pieces_of_self(filler, heatmap);
 }

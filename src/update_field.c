@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/22 12:10:03 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/26 20:43:16 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		find_first_piece(t_info *filler)
+void		find_first_piece(t_fie *filler)
 {
 	int		i;
 
@@ -33,7 +33,7 @@ void		find_first_piece(t_info *filler)
 	}
 }
 
-void		update_field(t_info *filler)
+void		update_field(t_fie *filler)
 {
 	int		x;
 

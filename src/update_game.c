@@ -6,27 +6,28 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:44 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 17:03:48 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/26 21:05:30 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		initializing_var_struct(t_info *filler, t_hmap *heatmap)
+void		init_var_update(t_str *strategy, t_pie *piece)
 {
-	filler->first_star = 0;
-	filler->last_star = 0;
-	filler->lines_piece = 0;
-	heatmap->last_piece_x = -1;
-	heatmap->current_piece_x = -1;
+	piece->first_star = 0;
+	piece->last_star = 0;
+	piece->lines_piece = 0;
+	strategy->last_piece_x = -1;
+	strategy->current_piece_x = -1;
 }
 
-void		update_game(t_info *filler, t_hmap *heatmap)
+void		update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 {
-	initializing_var_struct(filler, heatmap);
+	init_var_update(strategy, piece);
 	update_field(filler);
-	update_enemy(filler, heatmap);
+	update_enemy(filler, heatmap, strategy);
+	// update_strategy(filler, strategy);
 	update_heatmap(filler, heatmap);
-	update_piece(filler, heatmap);
-	print_test(filler, heatmap);// <-----
+	update_piece(filler, heatmap, piece);
+	print_test(filler, heatmap, strategy, piece);// <-----
 }

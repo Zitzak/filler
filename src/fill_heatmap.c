@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:23 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 16:57:13 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/26 20:28:36 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		heatmap_to_enemy(t_hmap *heatmap)
 	int		n;
 
 	n = 1;
-	while (direct_change_heatmap(heatmap, n))
+	while (redirect_heatmap_to_enemy(heatmap, n))
 	{
 		n++;
 	}
