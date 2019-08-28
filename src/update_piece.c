@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/07 18:06:32 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 21:20:53 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/27 14:20:13 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void		get_offset(t_fie *filler, t_pie *piece)
 {
 	int		x;
 	int		ret;
+	int		i;
 
+	i = 0;
 	x = 0;
 	while (x < piece->piece_x)
 	{
+		ret = 0;
 		ft_get_next_line(0, &filler->line);
 		ret = ft_nchar(filler->line, '*');
 		if (ret > 0)
 		{
-			piece->lines_piece++;
+			i++;
+			piece->lines_piece = piece->lines_piece + 1;
 			if (ret < piece->first_star || piece->first_star == 0)
 				piece->first_star = ret;
 			ret = ft_strlen(filler->line);
@@ -75,33 +79,36 @@ void		create_piece(t_pie *piece)
 		first_star = ft_nchar(piece->temp_piece[i], '*');
 		if (first_star != 0)
 		{
-			piece->piece[x] = (char*)ft_memalloc(piece->collums_piece + 1);
+			if (piece->first_line == -1)
+				piece->first_line = i;
+			piece->piece[x] = (char*)malloc(sizeof(piece->collums_piece + 1));
+			if (piece->piece[x] == NULL)
+				exit(-1); //<<<<<<< error management
 			copy_piece(piece, x, first_star, i);
 			x++;
 		}
 		i++;
 	}
-	piece->piece[x] = NULL;
 }
 
-void		get_size_piece(t_pie *piece)
+void		get_size_piece(t_fie *filler, t_pie *piece)
 {
-	char		*line;
-
-	ft_get_next_line(0, &line);
-	while (ft_isdigit(*line) != 1)
-		line++;
-	piece->piece_x = ft_atoi(&(*line));
-	while (ft_isdigit(*line) == 1)
-		line++;
-	line++;
-	piece->piece_y = ft_atoi(&(*line));
-	// free(line);
+	ft_get_next_line(0, &filler->line);
+	while (ft_isdigit(*filler->line) != 1)
+		filler->line++;
+	piece->piece_x = ft_atoi(&(*filler->line));
+	while (ft_isdigit(*filler->line) == 1)
+		filler->line++;
+	filler->line++;
+	piece->piece_y = ft_atoi(&(*filler->line));
 }
 
 void		update_piece(t_fie *filler, t_hmap *heatmap, t_pie *piece)
 {
-	get_size_piece(piece);
+	int		i;
+
+	i = 0;
+	get_size_piece(filler, piece);
 	if (ft_mem_array_alloc(&piece->temp_piece, piece->piece_x) == -1)
 		error(filler, heatmap);
 	get_offset(filler, piece);

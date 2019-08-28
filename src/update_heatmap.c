@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:21:55 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 21:35:36 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/27 16:38:23 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,18 @@ void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
 	}
 }
 
-void		update_heatmap(t_fie *filler, t_hmap *heatmap)
+void		update_heatmap(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 {
 	heatmap_to_zero(heatmap);
-	//choose how to fill in heatmap depending on strategy
-	heatmap_from_down(heatmap);
-	// heatmap_to_enemy(heatmap);
+	if (strategy->map == 'd')
+		heatmap_from_down(heatmap);
+	else if (strategy->map == 'u')
+		heatmap_from_up(heatmap);
+	else if (strategy->map == 'l')
+		heatmap_from_left(heatmap);
+	else if (strategy->map == 'r')
+		heatmap_from_right(heatmap);
+	else
+		heatmap_to_enemy(heatmap);
 	replace_pieces_of_self(filler, heatmap);
 }

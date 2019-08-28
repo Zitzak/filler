@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 21:37:48 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/08/27 17:00:01 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		last_placement_enemy(t_fie *filler, t_hmap *heatmap)
 	}
 }
 
-void		get_direction(t_hmap *heatmap, t_str *strategy)
+void		get_direction_down(t_hmap *heatmap, t_str *strategy)
 {
 	int		x;
 	int		y;
@@ -43,20 +43,49 @@ void		get_direction(t_hmap *heatmap, t_str *strategy)
 		y = 0;
 		while (y < heatmap->size_y)
 		{
-			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && strategy->last_piece_x == -1)
+			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && strategy->enemy_last_x == -1)
 			{
-				strategy->last_piece_x = x;
-				strategy->last_piece_y = y;
+				strategy->enemy_last_x = x;
+				strategy->enemy_last_y = y;
 			}
-			if (heatmap->map[x][y] == (heatmap->enemy_num) && strategy->current_piece_x == -1)
+			if (heatmap->map[x][y] == (heatmap->enemy_num) && strategy->enemy_curr_x == -1)
 			{
-				strategy->current_piece_x = x;
-				strategy->current_piece_y = y;
+				strategy->enemy_curr_x = x;
+				strategy->enemy_curr_y = y;
 			}
 			y++;
 		}
 		x++;
-		if (strategy->last_piece_x != -1 && strategy->current_piece_x != -1)
+		if (strategy->enemy_last_x != -1 && strategy->enemy_curr_x != -1)
+			return ;
+	}
+}
+
+void		get_direction_up(t_hmap *heatmap, t_str *strategy)
+{
+	int		x;
+	int		y;
+
+	x = heatmap->size_x - 1;
+	while (x >= 0)
+	{
+		y = heatmap->size_y - 1;
+		while (y >= 0)
+		{
+			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && strategy->enemy_last_x == -1)
+			{
+				strategy->enemy_last_x = x;
+				strategy->enemy_last_y = y;
+			}
+			if (heatmap->map[x][y] == (heatmap->enemy_num) && strategy->enemy_curr_x == -1)
+			{
+				strategy->enemy_curr_x = x;
+				strategy->enemy_curr_y = y;
+			}
+			y--;
+		}
+		x--;
+		if (strategy->enemy_last_x != -1 && strategy->enemy_curr_x != -1)
 			return ;
 	}
 }
@@ -66,10 +95,10 @@ void		update_direction(t_str *strategy)
 	int		x;
 	int		y;
 
-	if (strategy->last_piece_x != -1)
+	if (strategy->enemy_last_x != -1)
 	{
-		x = strategy->current_piece_x - strategy->last_piece_x;
-		y = strategy->current_piece_y - strategy->last_piece_y;
+		x = strategy->enemy_curr_x - strategy->enemy_last_x;
+		y = strategy->enemy_curr_y - strategy->enemy_last_y;
 		if (x < 0 && y == 0)
 			strategy->down++;
 		else if (x < 0 && y < 0)
@@ -92,6 +121,9 @@ void		update_direction(t_str *strategy)
 void		update_enemy(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 {
 	last_placement_enemy(filler, heatmap);
-	get_direction(heatmap, strategy);
+	if (filler->start == 1)
+		get_direction_down(heatmap, strategy);
+	if (filler->start == 0)
+		get_direction_up(heatmap, strategy);
 	update_direction(strategy);
 }
