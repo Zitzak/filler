@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 15:41:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 21:20:33 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/02 17:53:58 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 int		ft_mem_array_alloc(char ***array, size_t size)
 {
+	if (array == NULL)
+		return (-1);
 	*array = (char**)malloc(sizeof(char*) * size);
 	if (*array == NULL)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/28 15:47:25 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/09 14:47:57 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 	// <<<<<<<<<<<<<<<<<<<<<<<< FREE NOT NEEDED STRUCT >>>>>>>>>>>>>>>>>>>>>
 	free(strategy);
+	// free(filler);
 	// free(heatmap);
 	// free(piece);
 
@@ -61,18 +62,18 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<< RAW PIECE  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// // i = 0;
-	// ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", piece->piece_x, piece->piece_y);
-	// while (i < piece->piece_x)//
-	// {
-	// 	ft_dprintf(filler->fd, "[%s]\n", piece->temp_piece[i]);//
-	// 	i++;
-	// }
+	i = 0;
+	ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", piece->piece_x, piece->piece_y);
+	while (i < piece->piece_x)//
+	{
+		ft_dprintf(filler->fd, "[%s]\n", piece->temp_piece[i]);//
+		i++;
+	}
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<< VAR FOR CUT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// ft_dprintf(filler->fd, "\n[first_star: %d]\n[last_star: %d]\n[num lines: %d]\n[num collums: %d]\n[first_line: %d]\n[start: %d]\n",
-	// 	piece->first_star, piece->last_star, piece->lines_piece, piece->collums_piece, piece->first_line, filler->start);
+	ft_dprintf(filler->fd, "\n[first_star: %d]\n[last_star: %d]\n[num lines: %d]\n[num collums: %d]\n[first_line: %d]\n[start: %d]\n",
+		piece->first_star, piece->last_star, piece->lines_piece, piece->collums_piece, piece->first_line, filler->start);
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<CUT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -86,16 +87,20 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 	
 
 	//<<<<<<<<<<<<<<<<<<<<<<<VAR STRATEGY STRUYCT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// i = 0;
-	// ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
-	// 	strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
-	// ft_dprintf(filler->fd, "my_furthest_x: %i\nmy_curr_y: %i\nenemy_furthest_x: %i\nenemy_furthest_y: %i\n",
-	//  strategy->my_furthest_x, strategy->my_furthest_y, strategy->enemy_furthest_x, strategy->enemy_furthest_y);
+	i = 0;
+	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
+		strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
+	ft_dprintf(filler->fd, "my_furthest_x: %i\nmy_curr_y: %i\nenemy_furthest_x: %i\nenemy_furthest_y: %i\n",
+	 strategy->my_furthest_x, strategy->my_furthest_y, strategy->enemy_furthest_x, strategy->enemy_furthest_y);
 	
 	
 	//<<<<<<<<<<<<<<<<<<<<< VAR PLACEMEENT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	ft_dprintf(filler->fd, "cordinate_placement_piece: [%i][%i]\nsum_heatmap: %i\n", heatmap->x, heatmap->y, heatmap->sum);
-	
+	if (piece->first_line != 1)
+		heatmap->x = heatmap->x - (piece->first_line - 1);
+	if (piece->first_star != 1)
+		heatmap->y = heatmap->y - (piece->first_star - 1);
+	ft_dprintf(filler->fd, "final x: %i - final y: %i\n", heatmap->x, heatmap->y);
 }
 
 void		error(t_fie *filler, t_hmap *heatmap)
@@ -113,8 +118,13 @@ int		main(void)//moet errors handelen van malloc
 	t_hmap			*heatmap;
 
 	filler = (t_fie*)malloc(sizeof(t_fie));// error if NULL
+	if (filler == NULL)
+		return (0);
 	heatmap = (t_hmap*)malloc(sizeof(t_hmap));// error if NULL
+	if (heatmap == NULL)
+		return (0);
 	filler->fd = open("../input.txt", O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);// <-----
+	// write(filler->fd, "test1\n", 6);
 	first_input(filler, heatmap);
 	main_control(filler, heatmap);
 	return (0);

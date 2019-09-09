@@ -6,7 +6,7 @@
 #    By: mgross <mgross@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/08 10:14:38 by mgross         #+#    #+#                 #
-#    Updated: 2019/08/27 17:26:42 by mgross        ########   odam.nl          #
+#    Updated: 2019/09/02 10:18:29 by mgross        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FLAGS =	-Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) -o $(NAME) -I $(INCL) $(SRCS) -L ./libft/ -lft
+	gcc -g $(FLAGS) -o $(NAME) -I $(INCL) $(SRCS) -L ./libft/ -lft
 
 fclean:
 	rm -rf $(NAME)

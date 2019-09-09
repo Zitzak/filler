@@ -6,7 +6,7 @@
 /*   By: nstabel <nstabel@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/08 15:18:01 by nstabel        #+#    #+#                */
-/*   Updated: 2019/06/03 13:45:57 by mgross        ########   odam.nl         */
+/*   Updated: 2019/08/29 14:01:25 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 static int	set_style(t_flags *conv, char *style)
 {
 	if (ft_strequ(style, "bright") || ft_strequ(style, "bold"))
-		write(1, BOLD, 4);
+		write(conv->fd, BOLD, 4);
 	else if (ft_strequ(style, "italics"))
-		write(1, ITALICS, 4);
+		write(conv->fd, ITALICS, 4);
 	else if (ft_strequ(style, "underline"))
-		write(1, UNDERLINE, 4);
+		write(conv->fd, UNDERLINE, 4);
 	else if (ft_strequ(style, "eoc"))
-		write(1, EOC, 4);
+		write(conv->fd, EOC, 4);
 	else
 		return (0);
 	conv->num += 4;
@@ -43,21 +43,21 @@ static int	set_style(t_flags *conv, char *style)
 static int	set_color(t_flags *conv, char *color)
 {
 	if (ft_strequ(color, "black"))
-		write(1, BLACK, 5);
+		write(conv->fd, BLACK, 5);
 	else if (ft_strequ(color, "red"))
-		write(1, RED, 5);
+		write(conv->fd, RED, 5);
 	else if (ft_strequ(color, "green"))
-		write(1, GREEN, 5);
+		write(conv->fd, GREEN, 5);
 	else if (ft_strequ(color, "yellow"))
-		write(1, YELLOW, 5);
+		write(conv->fd, YELLOW, 5);
 	else if (ft_strequ(color, "blue"))
-		write(1, BLUE, 5);
+		write(conv->fd, BLUE, 5);
 	else if (ft_strequ(color, "magenta"))
-		write(1, MAGENTA, 5);
+		write(conv->fd, MAGENTA, 5);
 	else if (ft_strequ(color, "cyan"))
-		write(1, CYAN, 5);
+		write(conv->fd, CYAN, 5);
 	else if (ft_strequ(color, "white"))
-		write(1, WHITE, 5);
+		write(conv->fd, WHITE, 5);
 	else
 		return (0);
 	conv->num += 5;
@@ -73,11 +73,11 @@ static int	set_color(t_flags *conv, char *color)
 static int	set_off(t_flags *conv, char *off)
 {
 	if (ft_strequ(off, "bright off") || ft_strequ(off, "bold off"))
-		write(1, BOLD_OFF, 5);
+		write(conv->fd, BOLD_OFF, 5);
 	else if (ft_strequ(off, "italics off"))
-		write(1, ITALICS_OFF, 5);
+		write(conv->fd, ITALICS_OFF, 5);
 	else if (ft_strequ(off, "underline off"))
-		write(1, UNDERLINE_OFF, 5);
+		write(conv->fd, UNDERLINE_OFF, 5);
 	else
 		return (0);
 	conv->num += 5;

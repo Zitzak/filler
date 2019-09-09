@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/28 16:10:45 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/09 15:02:05 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,95 +16,69 @@
 ** Test placement of piece to up and left
 */
 
-int		test_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *filler)
+int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *filler)
 {
-	int		temp;
-	int		piece_x;
-	int		piece_y;
 	int		sum;
 	int		temp_y;
 	
-	temp_y = y;
-	temp = 0;
-	piece_x = 0;
-	sum = 0;filler->start = 1;
-	while (piece_x < piece->lines_piece)
+	sum = 0; filler->nks = 0;//
+	while (piece->x < piece->lines_piece)
 	{	
-		if (x == heatmap->size_x)
-		{
-			// ft_dprintf(filler->fd, "\ntest3\n\n");		
-			return (0);
-		}
-		piece_y = 0;
+		piece->y = 0;
 		temp_y = y;
-		while (piece_y < piece->collums_piece)
+		//dit is eebn testststslhja
+		while (piece->y < piece->collums_piece || temp_y == heatmap->size_y)
 		{
-			if (temp_y == heatmap->size_y)
-			{
-				// ft_dprintf(filler->fd, "\ntest1\n\n");
+			if (heatmap->map[x][temp_y] == 0 && piece->piece[piece->x][piece->y] == '*')
+				piece->star++;
+			if (heatmap->map[x][temp_y] < -1 && piece->piece[piece->x][piece->y] == '*')
 				return (0);
-			}
-			if (heatmap->map[x][temp_y] == 0 && piece->piece[piece_x][piece_y] == '*')
-				temp++;
-			if ((heatmap->map[x][temp_y] < -1 && piece->piece[piece_x][piece_y] == '*') || (temp > 1))
-			{
-				return (0);
-				// ft_dprintf(filler->fd, "\ntest2\n\n");					
-			}
-			// ft_dprintf(filler->fd, "heatmap_num: %i ", heatmap->map[x][temp_y]);
 			sum = sum + heatmap->map[x][temp_y];
-			// ft_dprintf(filler->fd, "sum after adding: %i\n", sum);
-			piece_y++;
+			piece->y++;
 			temp_y++;
 		}
-		piece_x++;
+		piece->x++;
 		x++;
+		if (temp_y == heatmap->size_y || x == heatmap->size_x)
+			return (0);
 	}
-	// ft_dprintf(filler->fd, "sum before check temp: %i\n", sum, temp);
-	if (temp != 1)
+	if (piece->star != 1)
 		sum = 0;
-	// ft_dprintf(filler->fd, "sum: %i - temp: %i\n", sum, temp);
 	return (sum);
 }
 
-// void		redirect_test_placement(t_hmap *heatmap, t_pie *piece)
-// {
-	
-// }
+void		init_var_test_placement(t_pie *piece)
+{
+	piece->star = 0;
+	piece->x = 0;
+}
 
-
-void		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
+int		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
 {
 	int		x;
 	int		y;
 	int		sum;
+	int		ret;
 
+	ret = 0;
 	x = 0;
 	while (x < heatmap->size_x)
 	{
 		y = 0;
 		while (y < heatmap->size_y)
 		{
-			sum = test_placement(heatmap, piece, x, y, filler);
-			// ft_dprintf(filler->fd, "sum_chek_placement %i\n", sum);
+			init_var_test_placement(piece);
+			sum = get_sum_placement(heatmap, piece, x, y, filler);
 			if (sum > 0)
 			{
-				ft_dprintf(filler->fd, "heatmap->sum1 %i\nx: %i\ny: %i\n\n", heatmap->sum, heatmap->x, heatmap->y);
-				// ft_dprintf(filler->fd, "test5\n");
-				if (heatmap->sum == 0)
+				// ft_dprintf(filler->fd, "1 - sum: %i - x: %i - y: %i\n", sum, x, y);
+				if ((sum < heatmap->sum || heatmap->sum == 0))
 				{
-					// ft_dprintf(filler->fd, "test6\n");
+					// ft_dprintf(filler->fd, "2 - sum: %i - x: %i - y: %i\n", sum, x, y);
+					if (ret == 0)
+						ret = 1;
 					heatmap->x = x;
 					heatmap->sum = sum;
-					// ft_dprintf(filler->fd, "heatmap->sum2 %i\n\n", heatmap->sum);
-					heatmap->y = y;
-				}
-				else if (sum < heatmap->sum)
-				{
-					// ft_dprintf(filler->fd, "test7\n");
-					heatmap->x = x;
-					heatmap->sum = sum;
-					// ft_dprintf(filler->fd, "heatmap->sum3 %i\n\n", heatmap->sum);
 					heatmap->y = y;
 				}
 			}
@@ -112,4 +86,13 @@ void		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
 		}
 		x++;
 	}
+	return (ret);
 }
+
+
+
+// void		place_piece(t_hmap *heatmap, t_pie *piece, t_fie *filler)
+// {
+// 	check_placement(heatmap, piece, filler);
+	// write_coordinates(heatmap, piece);
+// }

@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 15:43:16 by Marvin         #+#    #+#                */
-/*   Updated: 2019/08/26 20:28:59 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/09 13:24:43 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		change_heatmap(t_hmap *heatmap, int n, int x, int y)
 		if (heatmap->map[x - 1][y - 1] == 0)
 			heatmap->map[x - 1][y - 1] = n;
 	if (y != 0)
-		if (heatmap->map[x][y - 1] == 0 && y != 0)
+		if (heatmap->map[x][y - 1] == 0)
 			heatmap->map[x][y - 1] = n;
 	if (x != (heatmap->size_x - 1) && y != 0)
 		if (heatmap->map[x + 1][y - 1] == 0)
@@ -40,7 +40,7 @@ void		change_heatmap(t_hmap *heatmap, int n, int x, int y)
 			heatmap->map[x - 1][y] = n;
 }
 
-int			redirect_heatmap_to_enemy(t_hmap *heatmap, int n)
+int			redirect_heatmap_to_enemy(t_fie *filler, t_hmap *heatmap, int n)//hier verder
 {
 	int		x;
 	int		y;
@@ -48,6 +48,8 @@ int			redirect_heatmap_to_enemy(t_hmap *heatmap, int n)
 
 	ret = 0;
 	x = 0;
+	filler->nks = 5;
+	// write(filler->fd, "red test1\n", 10);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 	while (x < heatmap->size_x)
 	{
 		y = 0;
@@ -55,7 +57,7 @@ int			redirect_heatmap_to_enemy(t_hmap *heatmap, int n)
 		{
 			if (ret == 0 && heatmap->map[x][y] == 0)
 				ret = 1;
-			if ((heatmap->map[x][y] < 0) || (heatmap->map[x][y] == (n -1) && (n - 1) != 0))
+			if ((heatmap->map[x][y] < -1) || (heatmap->map[x][y] == (n - 1) && n != 1))
 			{
 				change_heatmap(heatmap, n, x, y);
 			}

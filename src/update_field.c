@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/26 20:43:16 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/09 16:26:27 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,14 @@ void		update_field(t_fie *filler)
 	int		x;
 
 	x = 0;
+	// write(filler->fd, "n6a:", 4);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 	ft_get_next_line(0, &filler->line);
+		ft_dprintf(filler->fd, "line: %s", filler->line);
+	if (*filler->line != ' ')
+			ft_get_next_line(0, &filler->line);
+	ft_dprintf(filler->fd, "line: %s", filler->line);
+	
+	// ft_dprintf(filler->fd, "line_field1: %s", filler->line);
 	while (x < filler->field_x)
 	{
 		ft_get_next_line(0, &filler->line);
@@ -48,5 +55,8 @@ void		update_field(t_fie *filler)
 		x++;
 		//zit hier nog de \n bij?
 	}
-	filler->field[x] = NULL;
+	// ft_dprintf(filler->fd, "line_field2: %s", filler->line);
+	// write(filler->fd, "n6b:", 4);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
+	// filler->field[x] = NULL;
+	// write(filler->fd, "n6c:", 4);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 }

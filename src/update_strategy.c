@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 18:59:07 by Marvin         #+#    #+#                */
-/*   Updated: 2019/08/27 17:22:05 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/09 14:22:09 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		change_strategy(t_str *strategy)
 
 void		update_strategy(t_fie *filler, t_str *strategy)
 {
-	get_furthest_pos(filler, strategy);
+	filler->nks = 5;//
+	// get_furthest_pos(filler, strategy);
 	change_strategy(strategy);
 }

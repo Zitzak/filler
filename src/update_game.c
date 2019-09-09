@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:44 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/28 15:57:57 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/09 16:16:20 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,26 @@ void		init_var_update(t_str *strategy, t_pie *piece, t_hmap *heatmap)
 
 void		update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 {
+	filler->nks = 5;//§
+	// write(filler->fd, "n4:", 3);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 	init_var_update(strategy, piece, heatmap);
+		write(filler->fd, "n3a:", 4);
+	// write(filler->fd, "n5:", 3);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 	update_field(filler);
-	update_enemy(filler, heatmap, strategy);
+		write(filler->fd, "n3b:", 4);
+
+	// write(filler->fd, "test2\n", 6);write(filler->fd, "n6:", 3);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
+	update_enemy(filler, heatmap, strategy);//<<<<<<<<<<<<< Seg errror
+		write(filler->fd, "n3c:", 4);
+	
 	update_strategy(filler, strategy);
-	update_heatmap(filler, heatmap, strategy);
+		write(filler->fd, "n3d:", 4);
+	// write(filler->fd, "test9\n", 6);
+	update_heatmap(filler, heatmap, strategy);// segfault :(
+		write(filler->fd, "n3e:", 4);	
+	// write(filler->fd, "test10\n", 7);
 	update_piece(filler, heatmap, piece);
+		write(filler->fd, "n3f:", 4);
+	// write(filler->fd, "test11\n", 7);
+
 }

@@ -1,6 +1,5 @@
-seed = 8400
-X: error on input
-O: error on input
-players/hcao.filler won
+seed = 5920
+../mgross.filler: Segfault at 89
+../mgross.filler won
 Score:
-3AGAINST0
+54AGAINST89
