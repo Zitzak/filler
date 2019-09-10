@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 18:59:07 by Marvin         #+#    #+#                */
-/*   Updated: 2019/09/09 14:22:09 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/10 13:47:27 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		change_strategy(t_str *strategy)
 {
-	strategy->map = 'g';
+	strategy->map = 'u';
 }
 
 void		update_strategy(t_fie *filler, t_str *strategy)

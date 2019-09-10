@@ -1,5 +1,2 @@
-seed = 5920
-../mgross.filler: Segfault at 89
-../mgross.filler won
-Score:
-54AGAINST89
+seed = 289
+O: error on input

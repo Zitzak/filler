@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/09 16:17:07 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/10 13:38:08 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_pie
 	int		collums_piece;
 	char	**piece;
 	char	**temp_piece;
+	int		nks;
 }				t_pie;
 
 /*
