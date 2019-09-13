@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/09 15:02:05 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 17:02:15 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *fille
 	{	
 		piece->y = 0;
 		temp_y = y;
-		//dit is eebn testststslhja
 		while (piece->y < piece->collums_piece || temp_y == heatmap->size_y)
 		{
+			if (temp_y == heatmap->size_y || x == heatmap->size_x)
+				return (0);
 			if (heatmap->map[x][temp_y] == 0 && piece->piece[piece->x][piece->y] == '*')
 				piece->star++;
 			if (heatmap->map[x][temp_y] < -1 && piece->piece[piece->x][piece->y] == '*')
@@ -39,8 +40,6 @@ int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *fille
 		}
 		piece->x++;
 		x++;
-		if (temp_y == heatmap->size_y || x == heatmap->size_x)
-			return (0);
 	}
 	if (piece->star != 1)
 		sum = 0;
@@ -88,11 +87,3 @@ int		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
 	}
 	return (ret);
 }
-
-
-
-// void		place_piece(t_hmap *heatmap, t_pie *piece, t_fie *filler)
-// {
-// 	check_placement(heatmap, piece, filler);
-	// write_coordinates(heatmap, piece);
-// }

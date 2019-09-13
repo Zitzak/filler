@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 15:43:16 by Marvin         #+#    #+#                */
-/*   Updated: 2019/09/09 13:24:43 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 16:48:17 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int			redirect_heatmap_to_enemy(t_fie *filler, t_hmap *heatmap, int n)//hier ver
 
 	ret = 0;
 	x = 0;
-	filler->nks = 5;
-	// write(filler->fd, "red test1\n", 10);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
+	filler->nks = 5;//
 	while (x < heatmap->size_x)
 	{
 		y = 0;

@@ -6,23 +6,32 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 15:41:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/02 17:53:58 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 14:44:10 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** This function takes the address of a 2D array plus the size of the layers it
-** has to malloc and sets the last array pointer to NULL
+** This function creates a 2D array the size of x and y and returns this array
+** or a NULL pointer if its failed.
 */
 
-int		ft_mem_array_alloc(char ***array, size_t size)
+void	**ft_mem_array_alloc(size_t x_dim, size_t size_x, size_t size_y)
 {
+	void		**array;
+	size_t		x;
+
+	x = 0;
+	array = ft_memalloc(size_x);
 	if (array == NULL)
-		return (-1);
-	*array = (char**)malloc(sizeof(char*) * size);
-	if (*array == NULL)
-		return (-1);
-	return (0);
+		return (NULL);
+	while (x < x_dim)
+	{
+		array[x] = ft_memalloc(size_y);
+		if (array[x] == NULL)
+			return (NULL);
+		x++;
+	}
+	return (array);
 }

@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/10 13:38:08 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:00:23 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef	struct 	s_hmap
 	int		sum;
 	int		x;
 	int		y;
+	int		nks;// < -------------------
 }				t_hmap;
 
 /*
@@ -54,7 +55,7 @@ typedef struct	s_pie
 	int		collums_piece;
 	char	**piece;
 	char	**temp_piece;
-	int		nks;
+	int		nks;// < -------------------
 }				t_pie;
 
 /*
@@ -81,7 +82,7 @@ typedef struct	s_str
 	int		my_furthest_y;
 	int		enemy_furthest_x;
 	int		enemy_furthest_y;
-	int		nks;//
+	int		nks;// < -------------------
 }				t_str;
 
 /*
@@ -94,39 +95,32 @@ typedef struct s_fie
 	int 	fd;// < -------------------
 	char	enemy;
 	short	start;
-	// int		last_star;
-	// int		first_star;
-	// int		lines_piece;
-	// int		collums_piece;
 	int		field_x;
 	int		field_y;
 	char	**field;
-	int		nks;
-	// int		piece_x;
-	// int		piece_y;
-	// char	**piece;
-	// char	**temp_piece;
+	int		nks;// < -------------------
 	char	*line;
 	char	*input;
 	int		fd1;
 }				t_fie;
 
+int		init_struct(t_fie **filler, t_hmap **heatmap, t_str **strategy, t_pie **piece);
 void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece);// <---------------
-void	first_input(t_fie *filler, t_hmap *heatmap);
+int		first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy);
 void	get_token(t_fie *filler);
 void	update_field(t_fie *filler);
 int		create_field(t_fie *filler, t_hmap *heatmap);
-void	get_size_piece(t_fie *filler, t_pie *piece);
+int		get_size_piece(t_fie *filler, t_pie *piece);
 void	get_offset(t_fie *filler, t_pie *piece);
-void	update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece);
-void	update_piece(t_fie *filler, t_hmap *heatmap, t_pie *piece);
-void	create_piece(t_pie *piece);
+int		update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece);
+int		update_piece(t_fie *filler, t_pie *piece);
+int		create_piece(t_pie *piece);
 void	init_var_update(t_str *strategy, t_pie *piece, t_hmap *heatmap);
 void	copy_piece(t_pie *piece, int x, int first_star, int i);
 void	error(t_fie *filler, t_hmap *heatmap);
-void	main_control(t_fie *filler, t_hmap *heatmap);
+int		main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece);
 void	find_first_piece(t_fie *filler);
-int		create_heatmap(t_hmap *heatmap, t_fie *filler);
+int		create_heatmap(t_hmap *heatmap);
 void	update_heatmap(t_fie *filler, t_hmap *heatmap, t_str *strategy);
 void	update_placement_enemy(t_fie *filler, t_hmap *heatmap);
 void	update_map(t_fie *filler, t_hmap *heatmap);
@@ -142,7 +136,7 @@ int		redirect_heatmap_to_enemy(t_fie *filler, t_hmap *heatmap, int n);
 void	heatmap_to_enemy(t_fie *filler, t_hmap *heatmap);
 void	replace_pieces_of_self(t_fie *filler, t_hmap *heatmap);
 void	update_direction(t_str *strategy);
-void	init_var_first_input(t_fie *filler, t_hmap *heatmap);
+void	init_var_first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy);
 void	update_strategy(t_fie *filler, t_str *strategy);
 void	get_my_pos_down(t_fie *filler, t_str *strategy);
 void	get_my_pos_up(t_fie *filler, t_str *strategy);
@@ -153,7 +147,9 @@ void	get_enemy_pos_up(t_fie *filler, t_str *strategy);
 void	get_enemy_pos_down(t_fie *filler, t_str *strategy);
 int		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler);
 int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *filler);
-void	write_coordinates(t_hmap *heatmap, t_pie *piece);
+void	write_coordinates(t_fie *filler, t_hmap *heatmap, t_pie *piece);
 void	place_piece(t_hmap *heatmap, t_pie *piece, t_fie *filler);
 void	last_placement_enemy(t_fie *filler, t_hmap *heatmap);
+void	free_function(t_fie *filler);
+
 #endif

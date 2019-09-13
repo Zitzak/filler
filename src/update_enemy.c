@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/10 13:31:17 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/13 16:46:35 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,12 @@ void		last_placement_enemy(t_fie *filler, t_hmap *heatmap)
 	int		y;
 
 	x = 0;
-	// write(filler->fd, "k:", 2);ft_putnbr_fd(heatmap->map[0][0], filler->fd);write(filler->fd, "\n", 1);
 	heatmap->enemy_num--;
 	while (x < filler->field_x)
 	{
 		y = 0;
-		// write(filler->fd, "n3b1:", 5);
 		while (y < filler->field_y)
 		{
-			// write(filler->fd, "n3b2:", 5);
-			// write(filler->fd, "k:", 2);ft_putnbr_fd(heatmap->map[0][0], filler->fd);
-			// write(filler->fd, "k1:", 2);ft_putnbr_fd(filler->field[0][0], filler->fd);
 			if (filler->field[x][y] == filler->enemy && heatmap->map[x][y] >= 0)
 				heatmap->map[x][y] = heatmap->enemy_num;
 			y++;
@@ -132,7 +127,7 @@ void		update_direction(t_str *strategy)
 
 void		update_enemy(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 {
-	strategy->nks = 5;
+	strategy->nks = 5;//
 	// write(filler->fd, "test3\n", 6);
 	last_placement_enemy(filler, heatmap);
 	// strategy->left = 5;
