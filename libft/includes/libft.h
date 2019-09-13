@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/17 18:39:18 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 14:44:50 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:37:38 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void			ft_putstrarr(const char **array);
 char			*ft_select(char **str, size_t pos, size_t len);
 char			*ft_replace(char **str, char const *insert, size_t pos, \
 				size_t len);
-void			ft_strarrdel(char **array);
+void			ft_strarrdel(char ***array, size_t size_x);
 size_t			ft_strarrlen(const char **array);
 char			*ft_strcalc_add(char **nb, const char *s2);
 char			*ft_strcalc_mult(char **nb);

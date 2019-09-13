@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:00:23 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:37:44 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ typedef struct s_fie
 	char	**field;
 	int		nks;// < -------------------
 	char	*line;
-	char	*input;
-	int		fd1;
 }				t_fie;
 
 int		init_struct(t_fie **filler, t_hmap **heatmap, t_str **strategy, t_pie **piece);
@@ -117,7 +115,6 @@ int		update_piece(t_fie *filler, t_pie *piece);
 int		create_piece(t_pie *piece);
 void	init_var_update(t_str *strategy, t_pie *piece, t_hmap *heatmap);
 void	copy_piece(t_pie *piece, int x, int first_star, int i);
-void	error(t_fie *filler, t_hmap *heatmap);
 int		main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece);
 void	find_first_piece(t_fie *filler);
 int		create_heatmap(t_hmap *heatmap);
@@ -150,6 +147,9 @@ int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *fille
 void	write_coordinates(t_fie *filler, t_hmap *heatmap, t_pie *piece);
 void	place_piece(t_hmap *heatmap, t_pie *piece, t_fie *filler);
 void	last_placement_enemy(t_fie *filler, t_hmap *heatmap);
-void	free_function(t_fie *filler);
+void	free_piece(t_pie *piece);
+void	free_heatmap(t_hmap *heatmap);
+void	free_filler(t_fie *filler);
+void	free_redirect(t_fie **filler, t_hmap **heatmap, t_pie **piece, t_str **strategy);
 
 #endif

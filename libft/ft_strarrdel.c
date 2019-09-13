@@ -6,30 +6,26 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/20 19:02:13 by mgross         #+#    #+#                */
-/*   Updated: 2019/04/03 12:17:30 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:42:44 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** This function frees all levels of an 2D array. This works only if the last
-** level of the 2D array is pointed to NULL
+** This function frees all levels of an 2D array.
 */
 
-void	ft_strarrdel(char **array)
+void	ft_strarrdel(char ***array, size_t size_x)
 {
-	int		i;
+	size_t		x;
 
-	i = 0;
-	while (array[i] != NULL)
+	x = 0;
+	while (x < size_x)
 	{
-		i++;
+		ft_strdel(&(*array)[x]);
+		x++;
 	}
-	while (i >= 0)
-	{
-		ft_strdel(&array[i]);
-		i--;
-	}
-	free(array);
+	free(*array);
+	*array = NULL;
 }

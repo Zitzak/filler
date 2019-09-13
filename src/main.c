@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:00:50 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:47:34 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,6 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 	// ft_dprintf(filler->fd, "final x: %i - final y: %i\n", heatmap->x, heatmap->y);
 }
 
-void		error(t_fie *filler, t_hmap *heatmap)
-{
-	//deze moet nog aangepast worden om alles te freeen
-	//piece moet ook nog gefreed worden
-
-	free(heatmap);
-	free(filler);
-	exit (-1);
-}
 
 int			init_struct(t_fie **filler, t_hmap **heatmap, t_str **strategy, t_pie **piece)
 {
@@ -159,12 +150,18 @@ int			main(void)//moet errors handelen van malloc
 		return (-1);
 	filler->fd = open("../input.txt", O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);// <-----
 	if (first_input(filler, heatmap, strategy) == -1)
-		return (-1); // <<<<<<<<free management
-	if (main_control(filler, heatmap, strategy, piece) == -1)
+	{
+		free_redirect(&filler, &heatmap, &piece, &strategy);
 		return (-1);
-	// else
-	// {
-	// 	free structs
-	// }
+	}
+	if (main_control(filler, heatmap, strategy, piece) == -1)
+	{
+		free_redirect(&filler, &heatmap, &piece, &strategy);
+		return (-1);
+	}
+	else
+	{
+		// free_redirect(&filler, &heatmap, &piece, &strategy);
+	}
 	return (0);
 }

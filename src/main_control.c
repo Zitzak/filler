@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/08 10:08:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:03:22 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/13 18:43:47 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		write_coordinates(t_fie *filler, t_hmap *heatmap, t_pie *piece)
 {
-	filler->nks = 5;//
+	filler->nks = 5;// <-------
 	if (piece->first_line != 1)
 		heatmap->x = heatmap->x - (piece->first_line - 1);
 	if (piece->first_star != 1)
@@ -34,7 +34,7 @@ int			main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece
 			return (1);
 		}
 		write_coordinates(filler, heatmap, piece);
-		ft_dprintf(filler->fd, "\n");
-		print_test(filler, heatmap, strategy, piece);// <-----
+		// print_test(filler, heatmap, strategy, piece);// <-----
+		free_piece(piece);
 	}
 }
