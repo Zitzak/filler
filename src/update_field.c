@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 16:35:07 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 14:21:20 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		update_field(t_fie *filler)
 
 	x = 0;
 	ft_get_next_line(0, &filler->line);
-	ft_dprintf(filler->fd, "line_field2: %s", filler->line);//
+	// ft_dprintf(filler->fd, "line_field2: %s", filler->line);//
 	if (*filler->line != ' ')
 			ft_get_next_line(0, &filler->line);	
 	while (x < filler->field_x)

@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:37:44 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 15:19:54 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,13 @@ typedef struct	s_str
 	int		enemy_curr_x;
 	int		enemy_curr_y;
 	int		my_furthest_x;
+	int		my_furthest_xy;
 	int		my_furthest_y;
+	int		my_furthest_yx;
 	int		enemy_furthest_x;
+	int		enemy_furthest_xy;
 	int		enemy_furthest_y;
+	int		enemy_furthest_yx;
 	int		nks;// < -------------------
 }				t_str;
 
@@ -151,5 +155,7 @@ void	free_piece(t_pie *piece);
 void	free_heatmap(t_hmap *heatmap);
 void	free_filler(t_fie *filler);
 void	free_redirect(t_fie **filler, t_hmap **heatmap, t_pie **piece, t_str **strategy);
+int		update_coord_placement(t_hmap *heatmap, int sum, int x, int y, int ret);
+
 
 #endif

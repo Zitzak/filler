@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:47:34 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 15:34:14 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<< RAW PIECE  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	i = 0;
-	ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", piece->piece_x, piece->piece_y);
-	while (i < piece->piece_x)//
-	{
-		ft_dprintf(filler->fd, "[%s]\n", piece->temp_piece[i]);//
-		i++;
-	}
+	// i = 0;
+	// ft_dprintf(filler->fd, "\ntemp_piece: %d - %d\n", piece->piece_x, piece->piece_y);
+	// while (i < piece->piece_x)//
+	// {
+	// 	ft_dprintf(filler->fd, "[%s]\n", piece->temp_piece[i]);//
+	// 	i++;
+	// }
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<< VAR FOR CUT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -82,22 +82,26 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<CUT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	i = 0;
-	ft_dprintf(filler->fd, "\nPiece cut\n");
-	while (i < piece->lines_piece)
-	{
-		ft_dprintf(filler->fd, "[%s]\n", piece->piece[i]);
-		i++;
-	}
+	// i = 0;
+	// ft_dprintf(filler->fd, "\nPiece cut\n");
+	// while (i < piece->lines_piece)
+	// {
+	// 	ft_dprintf(filler->fd, "[%s]\n", piece->piece[i]);
+	// 	i++;
+	// }
 	
 
 	//<<<<<<<<<<<<<<<<<<<<<<<VAR STRATEGY STRUYCT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// i = 0;
-	// ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
-	// 	strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
-	// ft_dprintf(filler->fd, "my_furthest_x: %i\nmy_curr_y: %i\nenemy_furthest_x: %i\nenemy_furthest_y: %i\n",
-	//  strategy->my_furthest_x, strategy->my_furthest_y, strategy->enemy_furthest_x, strategy->enemy_furthest_y);
-	
+	i = 0;
+	ft_dprintf(filler->fd, "size_field: %c\n", strategy->size_field);
+	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
+		strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
+	ft_dprintf(filler->fd, "my_furthest_x+y: %i|%i\nmy_furthest_y+x: %i|%i\nenemy_furthest_x+y: %i|%i\nenemy_furthest_y+x: %i|%i\n",
+	 strategy->my_furthest_x, strategy->my_furthest_xy, strategy->my_furthest_y, strategy->my_furthest_yx, strategy->enemy_furthest_x,
+	  strategy->enemy_furthest_xy, strategy->enemy_furthest_y, strategy->enemy_furthest_yx);
+	ft_dprintf(filler->fd, "strat->down: %i\nstrat->dr_corner: %i\nstrat->dl_corner: %i\nstrat->up: \
+	%i\nstrat->ur_corner: %i\nstrat->ul_corner: %i\nstrat->right: %i\nstrat->left: %i\n", strategy->down, strategy->dr_corner,
+	strategy->dl_corner, strategy->up, strategy->ur_corner, strategy->ul_corner, strategy->right, strategy->left);
 	
 	//<<<<<<<<<<<<<<<<<<<<< VAR PLACEMEENT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ft_dprintf(filler->fd, "cordinate_placement_piece: [%i][%i]\nsum_heatmap: %i\n", heatmap->x, heatmap->y, heatmap->sum);
@@ -113,32 +117,32 @@ int			init_struct(t_fie **filler, t_hmap **heatmap, t_str **strategy, t_pie **pi
 {
 	*filler = (t_fie*)ft_memalloc(sizeof(t_fie));
 	if (filler == NULL)
+	{
+		free_redirect(filler, heatmap, piece, strategy);
 		return (-1);
+	}
 	*heatmap = (t_hmap*)ft_memalloc(sizeof(t_hmap));
 	if (heatmap == NULL)
 	{
-		free(filler);
+		free_redirect(filler, heatmap, piece, strategy);
 		return (-1);
 	}
 	*piece = (t_pie*)ft_memalloc(sizeof(t_pie));
 	if (piece == NULL)
 	{
-		free(filler);
-		free(heatmap);
+		free_redirect(filler, heatmap, piece, strategy);
 		return (-1);
 	}
 	*strategy = (t_str*)ft_memalloc(sizeof(t_str));
 	if (strategy == NULL)
 	{
-		free(filler);
-		free(heatmap);
-		free(piece);		
+		free_redirect(filler, heatmap, piece, strategy);
 		return (-1);
 	}
 	return (0);
 }
 
-int			main(void)//moet errors handelen van malloc
+int			main(void)
 {
 	t_fie			*filler;
 	t_hmap			*heatmap;
@@ -159,9 +163,6 @@ int			main(void)//moet errors handelen van malloc
 		free_redirect(&filler, &heatmap, &piece, &strategy);
 		return (-1);
 	}
-	else
-	{
-		// free_redirect(&filler, &heatmap, &piece, &strategy);
-	}
+	free_redirect(&filler, &heatmap, &piece, &strategy);
 	return (0);
 }

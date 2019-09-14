@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/13 18:13:46 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 19:19:51 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 13:52:46 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	free_redirect(t_fie **filler, t_hmap **heatmap, t_pie **piece,
 	{
 		free_filler(*filler);
 		free(*filler);
-		*filler = NULL;
 	}
+	*filler = NULL;
 	if (*heatmap != NULL)
 	{
 		free_heatmap(*heatmap);
 		free(*heatmap);
-		*heatmap = NULL;
 	}
+	*heatmap = NULL;
 	if (*piece != NULL)
 	{
 		if ((*piece)->piece != NULL)
@@ -58,11 +58,11 @@ void	free_redirect(t_fie **filler, t_hmap **heatmap, t_pie **piece,
 			free_piece(*piece);
 		}
 		free(*piece);
-		*piece = NULL;
 	}
+	*piece = NULL;
 	if (*strategy != NULL)
 	{
-		free(strategy);
-		*strategy = NULL;
+		free(*strategy);
 	}
+	*strategy = NULL;
 }

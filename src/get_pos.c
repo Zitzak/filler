@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 16:43:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/08/27 17:21:26 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 16:04:10 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ void		get_my_pos_down(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->me)
 			{
-				if (x > strategy->my_furthest_x)
+				if (x < strategy->my_furthest_x || strategy->my_furthest_x == -1)
+				{
 					strategy->my_furthest_x = x + 1;
-				if (y > strategy->my_furthest_y)
+					strategy->my_furthest_xy = y + 1;					
+				}
+				if (y < strategy->my_furthest_y || strategy->my_furthest_y == -1)
+				{
 					strategy->my_furthest_y = y + 1;
+					strategy->my_furthest_yx = x + 1;
+				}
 			}
 			y++;
 		}
@@ -43,8 +49,8 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 	int		x;
 	int		y;
 
-	strategy->my_furthest_x = filler->field_x;
-	strategy->my_furthest_y = filler->field_y;
+	strategy->my_furthest_x = filler->field_x - 1;
+	strategy->my_furthest_y = filler->field_y - 1;
 	x = filler->field_x - 1;
 	while (x >= 0)
 	{
@@ -54,9 +60,15 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 			if (filler->field[x][y] == filler->me)
 			{
 				if (x < strategy->my_furthest_x)
+				{
 					strategy->my_furthest_x = x + 1;
+					strategy->my_furthest_xy = y + 1;
+				}
 				if (y < strategy->my_furthest_y)
+				{
 					strategy->my_furthest_y = y + 1;
+					strategy->my_furthest_yx = x + 1;					
+				}
 			}
 			y--;
 		}
@@ -80,9 +92,15 @@ void		get_enemy_pos_down(t_fie *filler, t_str *strategy)
 			if (filler->field[x][y] == filler->enemy)
 			{
 				if (x > strategy->enemy_furthest_x)
+				{
 					strategy->enemy_furthest_x = x + 1;
+					strategy->enemy_furthest_xy = y + 1;
+				}
 				if (y > strategy->enemy_furthest_y)
+				{
 					strategy->enemy_furthest_y = y + 1;
+					strategy->enemy_furthest_yx = x + 1;
+				}
 			}
 			y++;
 		}
@@ -95,8 +113,8 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 	int		x;
 	int		y;
 
-	strategy->enemy_furthest_x = filler->field_x;
-	strategy->enemy_furthest_y = filler->field_y;
+	strategy->enemy_furthest_x = filler->field_x -1;
+	strategy->enemy_furthest_y = filler->field_y - 1;
 	x = filler->field_x - 1;
 	while (x >= 0)
 	{
@@ -106,9 +124,15 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 			if (filler->field[x][y] == filler->enemy)
 			{
 				if (x < strategy->enemy_furthest_x)
+				{
 					strategy->enemy_furthest_x = x + 1;
+					strategy->enemy_furthest_xy = y + 1;
+				}
 				if (y < strategy->enemy_furthest_y)
+				{
 					strategy->enemy_furthest_y = y + 1;
+					strategy->enemy_furthest_yx = x + 1;
+				}
 			}
 			y--;
 		}

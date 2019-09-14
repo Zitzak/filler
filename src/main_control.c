@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/08 10:08:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:43:47 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 16:08:08 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void		write_coordinates(t_fie *filler, t_hmap *heatmap, t_pie *piece)
 
 int			main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 {
-	while (1)
+	int i;//
+
+	i = 0;//
+	while (1)// hier moet weer 1
 	{
 		if (update_game(filler, heatmap, strategy, piece) == -1)
 			return (-1);
@@ -34,7 +37,9 @@ int			main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece
 			return (1);
 		}
 		write_coordinates(filler, heatmap, piece);
-		// print_test(filler, heatmap, strategy, piece);// <-----
+		print_test(filler, heatmap, strategy, piece);// <-----
 		free_piece(piece);
+		i++;//
 	}
+	return (1);//
 }

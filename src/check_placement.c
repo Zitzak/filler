@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 17:02:15 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 14:09:00 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,17 @@ int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y, t_fie *fille
 	return (sum);
 }
 
-void		init_var_test_placement(t_pie *piece)
+int		update_coord_placement(t_hmap *heatmap, int sum, int x, int y, int ret)
 {
-	piece->star = 0;
-	piece->x = 0;
+	if ((sum < heatmap->sum || heatmap->sum == 0))
+	{
+		if (ret == 0)
+			ret = 1;
+		heatmap->x = x;
+		heatmap->sum = sum;
+		heatmap->y = y;
+	}
+	return (ret);
 }
 
 int		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
@@ -66,20 +73,12 @@ int		check_placement(t_hmap *heatmap, t_pie *piece, t_fie *filler)
 		y = 0;
 		while (y < heatmap->size_y)
 		{
-			init_var_test_placement(piece);
-			sum = get_sum_placement(heatmap, piece, x, y, filler);
+			piece->star = 0;
+			piece->x = 0;
+			sum = get_sum_placement(heatmap, piece, x, y, filler); // mag maar 4 variablen?
 			if (sum > 0)
 			{
-				// ft_dprintf(filler->fd, "1 - sum: %i - x: %i - y: %i\n", sum, x, y);
-				if ((sum < heatmap->sum || heatmap->sum == 0))
-				{
-					// ft_dprintf(filler->fd, "2 - sum: %i - x: %i - y: %i\n", sum, x, y);
-					if (ret == 0)
-						ret = 1;
-					heatmap->x = x;
-					heatmap->sum = sum;
-					heatmap->y = y;
-				}
+				ret = update_coord_placement(heatmap, sum, x, y, ret);// mag maar 4 variablen?
 			}
 			y++;				
 		}

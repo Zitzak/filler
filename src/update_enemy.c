@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 16:46:35 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/14 15:22:09 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void		get_direction_down(t_hmap *heatmap, t_str *strategy, t_fie *filler)
 			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && strategy->enemy_last_x == -1)
 			{
 				// write(filler->fd, "test8\n", 6);
-				strategy->enemy_last_x = x;
-				strategy->enemy_last_y = y;
+				strategy->enemy_last_x = x + 1;
+				strategy->enemy_last_y = y + 1;
 			}
 			if (heatmap->map[x][y] == (heatmap->enemy_num) && strategy->enemy_curr_x == -1)
 			{
 				// write(filler->fd, "test9\n", 6);
-				strategy->enemy_curr_x = x;
-				strategy->enemy_curr_y = y;
+				strategy->enemy_curr_x = x + 1;
+				strategy->enemy_curr_y = y + 1;
 			}
 			// write(filler->fd, "test10\n", 7);
 			y++;
@@ -81,13 +81,13 @@ void		get_direction_up(t_hmap *heatmap, t_str *strategy)
 		{
 			if (heatmap->map[x][y] == (heatmap->enemy_num + 1) && strategy->enemy_last_x == -1)
 			{
-				strategy->enemy_last_x = x;
-				strategy->enemy_last_y = y;
+				strategy->enemy_last_x = x + 1;
+				strategy->enemy_last_y = y + 1;
 			}
 			if (heatmap->map[x][y] == (heatmap->enemy_num) && strategy->enemy_curr_x == -1)
 			{
-				strategy->enemy_curr_x = x;
-				strategy->enemy_curr_y = y;
+				strategy->enemy_curr_x = x + 1;
+				strategy->enemy_curr_y = y + 1;
 			}
 			y--;
 		}
@@ -104,8 +104,8 @@ void		update_direction(t_str *strategy)
 
 	if (strategy->enemy_last_x != -1)
 	{
-		x = strategy->enemy_curr_x - strategy->enemy_last_x;
-		y = strategy->enemy_curr_y - strategy->enemy_last_y;
+		x = strategy->enemy_last_x - strategy->enemy_curr_x;
+		y = strategy->enemy_last_y - strategy->enemy_curr_y;
 		if (x < 0 && y == 0)
 			strategy->down++;
 		else if (x < 0 && y < 0)
@@ -127,20 +127,20 @@ void		update_direction(t_str *strategy)
 
 void		update_enemy(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 {
-	strategy->nks = 5;//
+	strategy->nks = 5;
 	// write(filler->fd, "test3\n", 6);
 	last_placement_enemy(filler, heatmap);
 	// strategy->left = 5;
 	// write(filler->fd, "test4\n", 6);
-	// if (filler->start == 1)
-	// {
+	if (filler->start == 1)
+	{
 		// write(filler->fd, "test5a\n", 7);
-		// get_direction_down(heatmap, strategy, filler);
-	// }
+		get_direction_down(heatmap, strategy, filler);
+	}
 	// write(filler->fd, "test5\n", 6);
-	// if (filler->start == 0)
-	// 	get_direction_up(heatmap, strategy);
+	if (filler->start == 0)
+		get_direction_up(heatmap, strategy);
 	// write(filler->fd, "test6\n", 6);
-	// update_direction(strategy);
+	update_direction(strategy);
 	// write(filler->fd, "test7\n", 6);
 }
