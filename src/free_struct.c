@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/13 18:13:46 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/14 13:52:46 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/16 15:16:16 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,11 @@ void	free_redirect(t_fie **filler, t_hmap **heatmap, t_pie **piece,
 	if (*piece != NULL)
 	{
 		if ((*piece)->piece != NULL)
-		{
 			free_piece(*piece);
-		}
 		free(*piece);
 	}
 	*piece = NULL;
 	if (*strategy != NULL)
-	{
 		free(*strategy);
-	}
 	*strategy = NULL;
 }

@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 16:22:46 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/16 19:07:46 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-int		create_field(t_fie *filler, t_hmap *heatmap)
+int			create_field(t_fie *filler, t_hmap *heatmap)
 {
 	int		x;
 
@@ -34,7 +34,7 @@ int		create_field(t_fie *filler, t_hmap *heatmap)
 	return (0);
 }
 
-int		create_heatmap(t_hmap *heatmap)
+int			create_heatmap(t_hmap *heatmap)
 {
 	int		x;
 
@@ -64,7 +64,8 @@ void		get_token(t_fie *filler)
 	}
 }
 
-void		init_var_first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
+void		init_var_first_input(t_fie *filler, t_hmap *heatmap,
+			t_str *strategy)
 {
 	filler->start = -1;
 	heatmap->enemy_num = -1;
@@ -74,7 +75,7 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 		strategy->size_field = 'm';
 	else
 		strategy->size_field = 'l';
-		strategy->down = 0;
+	strategy->down = 0;
 	strategy->up = 0;
 	strategy->left = 0;
 	strategy->right = 0;
@@ -82,6 +83,12 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 	strategy->ur_corner = 0;
 	strategy->dl_corner = 0;
 	strategy->dr_corner = 0;
+	strategy-> begin = 0;
+	strategy->map = 's';
+	strategy->ur_border = 0;
+	strategy->dx_border = 0;
+	strategy->ry_border = 0;
+	strategy->ly_border = 0;
 }
 
 int			first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
@@ -90,7 +97,7 @@ int			first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 	if (create_field(filler, heatmap) == -1)
 		return (-1);
 	if (create_heatmap(heatmap) == -1)
-		return(-1);
+		return (-1);
 	init_var_first_input(filler, heatmap, strategy);
 	return (0);
 }

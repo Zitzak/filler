@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/14 15:34:14 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/16 19:07:46 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,24 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 
 	//<<<<<<<<<<<<<<<<<<<<<<CUT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// i = 0;
-	// ft_dprintf(filler->fd, "\nPiece cut\n");
-	// while (i < piece->lines_piece)
-	// {
-	// 	ft_dprintf(filler->fd, "[%s]\n", piece->piece[i]);
-	// 	i++;
-	// }
+	i = 0;
+	ft_dprintf(filler->fd, "\nPiece cut\n");
+	while (i < piece->lines_piece)
+	{
+		ft_dprintf(filler->fd, "[%s]\n", piece->piece[i]);
+		i++;
+	}
 	
 
 	//<<<<<<<<<<<<<<<<<<<<<<<VAR STRATEGY STRUYCT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	i = 0;
-	ft_dprintf(filler->fd, "size_field: %c\n", strategy->size_field);
+	ft_dprintf(filler->fd, "size_field: %c\nheatmap_direction %c\n", strategy->size_field, strategy->map);
 	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
 		strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
-	ft_dprintf(filler->fd, "my_furthest_x+y: %i|%i\nmy_furthest_y+x: %i|%i\nenemy_furthest_x+y: %i|%i\nenemy_furthest_y+x: %i|%i\n",
-	 strategy->my_furthest_x, strategy->my_furthest_xy, strategy->my_furthest_y, strategy->my_furthest_yx, strategy->enemy_furthest_x,
-	  strategy->enemy_furthest_xy, strategy->enemy_furthest_y, strategy->enemy_furthest_yx);
+	ft_dprintf(filler->fd, "my_furthest_x: %i|%i\nmy_furthest_y: %i|%i\nenemy_furthest_x: %i|%i\nenemy_furthest_y: %i|%i\n",
+	 strategy->my_furthest_x, strategy->my_furthest_xy, strategy->my_furthest_yx, strategy->my_furthest_y, strategy->enemy_furthest_x,
+	  strategy->enemy_furthest_xy, strategy->enemy_furthest_yx, strategy->enemy_furthest_y);
+	ft_dprintf(filler->fd, "ur_border: %i, dx_border: %i, ly_border: %i, ry_border: %i\n", strategy->ur_border, strategy->dx_border, strategy->ly_border, strategy->ry_border);
 	ft_dprintf(filler->fd, "strat->down: %i\nstrat->dr_corner: %i\nstrat->dl_corner: %i\nstrat->up: \
 	%i\nstrat->ur_corner: %i\nstrat->ul_corner: %i\nstrat->right: %i\nstrat->left: %i\n", strategy->down, strategy->dr_corner,
 	strategy->dl_corner, strategy->up, strategy->ur_corner, strategy->ul_corner, strategy->right, strategy->left);
@@ -166,3 +167,5 @@ int			main(void)
 	free_redirect(&filler, &heatmap, &piece, &strategy);
 	return (0);
 }
+
+//Segvault bij faulty player input

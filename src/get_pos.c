@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 16:43:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/14 16:04:10 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/16 19:11:12 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void		get_my_pos_down(t_fie *filler, t_str *strategy)
 	int		y;
 
 	x = 0;
-	strategy->my_furthest_x = -1;
-	strategy->my_furthest_y = -1;
 	while (x < filler->field_x)
 	{
 		y = 0;
@@ -27,15 +25,14 @@ void		get_my_pos_down(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->me)
 			{
-				if (x < strategy->my_furthest_x || strategy->my_furthest_x == -1)
+				if (strategy->my_furthest_x == -1)
 				{
-					strategy->my_furthest_x = x + 1;
-					strategy->my_furthest_xy = y + 1;					
+					assign_pos_me_x(strategy, x, y);
 				}
-				if (y < strategy->my_furthest_y || strategy->my_furthest_y == -1)
+				if (y < (strategy->my_furthest_y - 1) ||
+					strategy->my_furthest_y == -1)
 				{
-					strategy->my_furthest_y = y + 1;
-					strategy->my_furthest_yx = x + 1;
+					assign_pos_me_y(strategy, x, y);
 				}
 			}
 			y++;
@@ -49,8 +46,6 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 	int		x;
 	int		y;
 
-	strategy->my_furthest_x = filler->field_x - 1;
-	strategy->my_furthest_y = filler->field_y - 1;
 	x = filler->field_x - 1;
 	while (x >= 0)
 	{
@@ -59,16 +54,15 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->me)
 			{
-				if (x < strategy->my_furthest_x)
-				{
-					strategy->my_furthest_x = x + 1;
-					strategy->my_furthest_xy = y + 1;
-				}
-				if (y < strategy->my_furthest_y)
-				{
-					strategy->my_furthest_y = y + 1;
-					strategy->my_furthest_yx = x + 1;					
-				}
+				if (((filler->field_x - 1) - x) < 3)
+					strategy->dx_border = 1;
+				if (((filler->field_y - 1) - y) < 3)
+					strategy->ry_border = 1;
+				if (strategy->my_furthest_x == -1)
+					assign_pos_me_x(strategy, x, y);
+				if (y > (strategy->my_furthest_y - 1) ||
+					strategy->my_furthest_y == -1)
+					assign_pos_me_y(strategy, x, y);
 			}
 			y--;
 		}
@@ -82,8 +76,6 @@ void		get_enemy_pos_down(t_fie *filler, t_str *strategy)
 	int		y;
 
 	x = 0;
-	strategy->enemy_furthest_x = -1;
-	strategy->enemy_furthest_y = -1;
 	while (x < filler->field_x)
 	{
 		y = 0;
@@ -91,15 +83,14 @@ void		get_enemy_pos_down(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->enemy)
 			{
-				if (x > strategy->enemy_furthest_x)
+				if (strategy->enemy_furthest_x == -1)
 				{
-					strategy->enemy_furthest_x = x + 1;
-					strategy->enemy_furthest_xy = y + 1;
+					assign_pos_enemy_x(strategy, x, y);
 				}
-				if (y > strategy->enemy_furthest_y)
+				if (y < (strategy->enemy_furthest_y - 1) ||
+					strategy->enemy_furthest_y == -1)
 				{
-					strategy->enemy_furthest_y = y + 1;
-					strategy->enemy_furthest_yx = x + 1;
+					assign_pos_enemy_y(strategy, x, y);
 				}
 			}
 			y++;
@@ -113,8 +104,6 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 	int		x;
 	int		y;
 
-	strategy->enemy_furthest_x = filler->field_x -1;
-	strategy->enemy_furthest_y = filler->field_y - 1;
 	x = filler->field_x - 1;
 	while (x >= 0)
 	{
@@ -123,16 +112,11 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->enemy)
 			{
-				if (x < strategy->enemy_furthest_x)
-				{
-					strategy->enemy_furthest_x = x + 1;
-					strategy->enemy_furthest_xy = y + 1;
-				}
-				if (y < strategy->enemy_furthest_y)
-				{
-					strategy->enemy_furthest_y = y + 1;
-					strategy->enemy_furthest_yx = x + 1;
-				}
+				if (strategy->enemy_furthest_x == -1)
+					assign_pos_enemy_x(strategy, x, y);
+				if (y > (strategy->enemy_furthest_y - 1) ||
+					strategy->enemy_furthest_y == -1)
+					assign_pos_enemy_y(strategy, x, y);
 			}
 			y--;
 		}
@@ -142,6 +126,7 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 
 void		get_furthest_pos(t_fie *filler, t_str *strategy)
 {
+	init_var_get_pos(strategy);
 	if (filler->start == 0)
 	{
 		get_my_pos_down(filler, strategy);
@@ -149,7 +134,7 @@ void		get_furthest_pos(t_fie *filler, t_str *strategy)
 	}
 	if (filler->start == 1)
 	{
-		get_my_pos_up(filler,strategy);
+		get_my_pos_up(filler, strategy);
 		get_enemy_pos_down(filler, strategy);
 	}
 }

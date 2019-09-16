@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/08 10:08:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/14 16:08:08 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/16 18:57:04 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece
 	{
 		if (update_game(filler, heatmap, strategy, piece) == -1)
 			return (-1);
-		if (!check_placement(heatmap, piece, filler))
+		if (!check_placement(heatmap, piece, strategy))
 		{
 			ft_printf("0 0\n");
 			return (1);
