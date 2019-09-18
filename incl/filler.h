@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 19:36:08 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/18 18:47:01 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct	s_str
 	int		dx_border;
 	int		ly_border;
 	int		ry_border;
+	int		start;
 	int		nks;// < -------------------
 }				t_str;
 
@@ -171,6 +172,7 @@ void	init_var_get_pos(t_str *strategy);
 int		get_sum_redirect(t_hmap *heatmap, t_pie *piece, int x, int temp_y);
 void	update_enemy_last(t_str *strategy, int x, int y);
 void	update_enemy_curr(t_str *strategy, int x, int y);
+int		adjust_sum(t_str *strategy, int sum, int x, int y);
 
 
 #endif

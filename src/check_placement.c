@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 20:10:05 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/18 20:41:14 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,23 @@
 ** Test placement of piece to up and left
 */
 
-int		adjust_sum(t_str *strategy, int sum, int x)
+int		adjust_sum(t_str *strategy, int sum, int x, int y)
 {
-	if (strategy->map == 'r')
+	if (strategy->start == 1)
 	{
-		if (x < (strategy->enemy_furthest_x - 1))
-			sum = sum - 10;
+		if (strategy->map == 'r')
+		{
+			if (x < (strategy->enemy_furthest_x - 3))
+				sum = sum - 25;
+			sum = sum <= 0 ? 1 : sum;			
+		}
+		if (strategy->map == 'd')
+		{
+			if (y < (strategy->enemy_furthest_y - 3))
+				sum = sum - 25;
+			sum = sum <= 0 ? 1 : sum;
+		}
+
 	}
 	// if (strategy->map == 'd')
 	// {
@@ -98,7 +109,7 @@ int		check_placement(t_hmap *heatmap, t_pie *piece, t_str *strategy)
 		{
 			piece->star = 0;
 			piece->x = 0;
-			sum = adjust_sum(strategy, get_sum_placement(heatmap, piece, x, y), x);
+			sum = adjust_sum(strategy, get_sum_placement(heatmap, piece, x, y), x, y);
 			if (sum > 0)
 			{
 				ret = 1;

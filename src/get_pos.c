@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 16:43:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 19:11:12 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/18 20:16:23 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->me)
 			{
-				if (((filler->field_x - 1) - x) < 3)
+				if (((filler->field_x - 1) - x) < 2)
 					strategy->dx_border = 1;
-				if (((filler->field_y - 1) - y) < 3)
+				if (((filler->field_y - 1) - y) < 2)
 					strategy->ry_border = 1;
 				if (strategy->my_furthest_x == -1)
 					assign_pos_me_x(strategy, x, y);
