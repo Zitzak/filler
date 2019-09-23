@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/18 18:45:10 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/19 19:00:59 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap,
 	strategy->dr_corner = 0;
 	strategy-> begin = 0;
 	strategy->map = 's';
-	strategy->ur_border = 0;
-	strategy->dx_border = 0;
-	strategy->ry_border = 0;
-	strategy->ly_border = 0;
+	strategy->border = 0;
 	strategy->start = filler->start;
 }
 

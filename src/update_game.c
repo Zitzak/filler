@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:44 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 19:35:31 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/19 17:40:55 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		init_var_update(t_str *strategy, t_pie *piece, t_hmap *heatmap)
 	strategy->enemy_last_x = -1;
 	strategy->enemy_curr_x = -1;
 	heatmap->sum = 0;
+	strategy->enemy_quater = 0;
 }
 
 int			update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy,

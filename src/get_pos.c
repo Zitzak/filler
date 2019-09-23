@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 16:43:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/18 20:16:23 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void		get_my_pos_down(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->me)
 			{
-				if (strategy->my_furthest_x == -1)
+				if (strategy->my_far_x == -1)
 				{
 					assign_pos_me_x(strategy, x, y);
 				}
-				if (y < (strategy->my_furthest_y - 1) ||
-					strategy->my_furthest_y == -1)
+				if (y < (strategy->my_far_y - 1) ||
+					strategy->my_far_y == -1)
 				{
 					assign_pos_me_y(strategy, x, y);
 				}
@@ -55,13 +55,17 @@ void		get_my_pos_up(t_fie *filler, t_str *strategy)
 			if (filler->field[x][y] == filler->me)
 			{
 				if (((filler->field_x - 1) - x) < 2)
-					strategy->dx_border = 1;
+					strategy->border |= D_BORDER;
 				if (((filler->field_y - 1) - y) < 2)
-					strategy->ry_border = 1;
-				if (strategy->my_furthest_x == -1)
+					strategy->border |= R_BORDER;
+				if (x == 0)
+					strategy->border |= T_BORDER;
+				if (y == 0)
+					strategy->border |= L_BORDER;
+				if (strategy->my_far_x == -1)
 					assign_pos_me_x(strategy, x, y);
-				if (y > (strategy->my_furthest_y - 1) ||
-					strategy->my_furthest_y == -1)
+				if (y > (strategy->my_far_y - 1) ||
+					strategy->my_far_y == -1)
 					assign_pos_me_y(strategy, x, y);
 			}
 			y--;
@@ -83,12 +87,13 @@ void		get_enemy_pos_down(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->enemy)
 			{
-				if (strategy->enemy_furthest_x == -1)
+				get_quater(filler, strategy, x, y);
+				if (strategy->enemy_far_x == -1)
 				{
 					assign_pos_enemy_x(strategy, x, y);
 				}
-				if (y < (strategy->enemy_furthest_y - 1) ||
-					strategy->enemy_furthest_y == -1)
+				if (y < (strategy->enemy_far_y - 1) ||
+					strategy->enemy_far_y == -1)
 				{
 					assign_pos_enemy_y(strategy, x, y);
 				}
@@ -112,10 +117,10 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 		{
 			if (filler->field[x][y] == filler->enemy)
 			{
-				if (strategy->enemy_furthest_x == -1)
+				if (strategy->enemy_far_x == -1)
 					assign_pos_enemy_x(strategy, x, y);
-				if (y > (strategy->enemy_furthest_y - 1) ||
-					strategy->enemy_furthest_y == -1)
+				if (y > (strategy->enemy_far_y - 1) ||
+					strategy->enemy_far_y == -1)
 					assign_pos_enemy_y(strategy, x, y);
 			}
 			y--;

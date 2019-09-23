@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/18 20:41:14 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/19 20:02:05 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int		adjust_sum(t_str *strategy, int sum, int x, int y)
 	{
 		if (strategy->map == 'r')
 		{
-			if (x < (strategy->enemy_furthest_x - 3))
+			if (x < (strategy->enemy_far_x - 3) && (strategy->border & T_BORDER) != T_BORDER)
 				sum = sum - 25;
-			sum = sum <= 0 ? 1 : sum;			
+			else if (x > (strategy->my_far_x) && (strategy->border & D_BORDER) != D_BORDER)
+				sum = sum - 25;
 		}
 		if (strategy->map == 'd')
 		{
-			if (y < (strategy->enemy_furthest_y - 3))
+			if (y < (strategy->enemy_far_y - 3))
 				sum = sum - 25;
-			sum = sum <= 0 ? 1 : sum;
+		}
+		if (strategy->map == 'u')
+		{
+			
 		}
 
 	}
@@ -38,6 +42,7 @@ int		adjust_sum(t_str *strategy, int sum, int x, int y)
 	// {
 	// 	if ()
 	// }
+	sum = sum <= 0 ? 1 : sum;			
 	return (sum);
 }
 

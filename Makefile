@@ -6,7 +6,7 @@
 #    By: mgross <mgross@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/08 10:14:38 by mgross         #+#    #+#                 #
-#    Updated: 2019/09/16 18:13:40 by mgross        ########   odam.nl          #
+#    Updated: 2019/09/19 18:59:39 by Marvin        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =	./src/main.c ./src/first_input.c ./src/update_game.c \
 		./src/fill_heatmap2.c ./src/update_enemy.c ./src/update_field.c \
 		./src/update_heatmap.c ./src/update_strategy.c ./src/get_pos.c \
 		./src/check_placement.c ./src/free_struct.c ./src/get_pos2.c \
-		./src/update_enemy2.c ./src/calc_strategy.c
+		./src/update_enemy2.c ./src/calc_strategy.c ./src/get_pos3.c
 
 INCL =	./incl
 

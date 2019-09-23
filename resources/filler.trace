@@ -1,4 +1,2 @@
-seed = 7143
-../mgross.filler won
-Score:
-97AGAINST235
+seed = 3822
+../mgross.filler: Segfault at 0

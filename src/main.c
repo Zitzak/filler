@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 19:07:46 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,24 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 	//<<<<<<<<<<<<<<<<<<<<<<<VAR STRATEGY STRUYCT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	i = 0;
-	ft_dprintf(filler->fd, "size_field: %c\nheatmap_direction %c\n", strategy->size_field, strategy->map);
+	ft_dprintf(filler->fd, "size_field: %c\nheatmap_direction %c\nenemy_quater: %i\n", strategy->size_field, strategy->map, strategy->enemy_quater);
 	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
 		strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
-	ft_dprintf(filler->fd, "my_furthest_x: %i|%i\nmy_furthest_y: %i|%i\nenemy_furthest_x: %i|%i\nenemy_furthest_y: %i|%i\n",
-	 strategy->my_furthest_x, strategy->my_furthest_xy, strategy->my_furthest_yx, strategy->my_furthest_y, strategy->enemy_furthest_x,
-	  strategy->enemy_furthest_xy, strategy->enemy_furthest_yx, strategy->enemy_furthest_y);
-	ft_dprintf(filler->fd, "ur_border: %i, dx_border: %i, ly_border: %i, ry_border: %i\n", strategy->ur_border, strategy->dx_border, strategy->ly_border, strategy->ry_border);
+	ft_dprintf(filler->fd, "my_far_x: %i|%i\nmy_far_y: %i|%i\nenemy_far_x: %i|%i\nenemy_far_y: %i|%i\n",
+	 strategy->my_far_x, strategy->my_far_xy, strategy->my_far_yx, strategy->my_far_y, strategy->enemy_far_x,
+	  strategy->enemy_far_xy, strategy->enemy_far_yx, strategy->enemy_far_y);
 	ft_dprintf(filler->fd, "strat->down: %i\nstrat->dr_corner: %i\nstrat->dl_corner: %i\nstrat->up: \
 	%i\nstrat->ur_corner: %i\nstrat->ul_corner: %i\nstrat->right: %i\nstrat->left: %i\n", strategy->down, strategy->dr_corner,
 	strategy->dl_corner, strategy->up, strategy->ur_corner, strategy->ul_corner, strategy->right, strategy->left);
-	
+	if ((strategy->border & T_BORDER) == T_BORDER)
+		ft_dprintf(filler->fd, "top border = 1\n");
+	if ((strategy->border & D_BORDER) == D_BORDER)
+		ft_dprintf(filler->fd, "down border = 1\n");
+	if ((strategy->border & R_BORDER) == R_BORDER)
+		ft_dprintf(filler->fd, "right border = 1\n");
+	if ((strategy->border & L_BORDER) == L_BORDER)
+		ft_dprintf(filler->fd, "left border = 1\n");
+	// ft_dprintf(filler->fd, "me_ur_border: %i, me_dx_border: %i, me_ly_border: %i, me_ry_border: %i\n", strategy->me_ur_border, strategy->me_dx_border, strategy->me_ly_border, strategy->me_ry_border);
 	//<<<<<<<<<<<<<<<<<<<<< VAR PLACEMEENT PIECE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// ft_dprintf(filler->fd, "cordinate_placement_piece: [%i][%i]\nsum_heatmap: %i\n", heatmap->x, heatmap->y, heatmap->sum);
 	// if (piece->first_line != 1)
@@ -168,4 +175,4 @@ int			main(void)
 	return (0);
 }
 
-//Segvault bij faulty player input
+//Segvault bij faulty player input als 2de player.. Moet fixen!!!! test met champly

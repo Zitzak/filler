@@ -6,20 +6,40 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/18 18:47:01 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-#include <unistd.h>
-#include <stdio.h>//
-#include <stdlib.h>
-#include <fcntl.h>//
-#include "../libft/includes/libft.h"
+# include <unistd.h>
+# include <stdio.h>//
+# include <stdlib.h>
+# include <fcntl.h>//
+# include "../libft/includes/libft.h"
 
-#define BUFF_SIZE_FILLER 1024
+# define BUFF_SIZE_FILLER	1024
+# define QUATER_1_X			(1 << 0)
+# define QUATER_2_X			(1 << 1)
+# define QUATER_3_X			(1 << 2)
+# define QUATER_4_X			(1 << 3)
+# define QUATER_1_Y			(1 << 4)
+# define QUATER_2_Y			(1 << 5)
+# define QUATER_3_Y			(1 << 6)
+# define QUATER_4_Y			(1 << 7)
+# define T_BORDER			(1 << 0)
+# define D_BORDER			(1 << 1)
+# define L_BORDER			(1 << 2)
+# define R_BORDER			(1 << 3)
+# define STR_R				(1 << 0)
+# define STR_R_UP			(1 << 1)
+# define STR_R_D			(1 << 2)
+# define STR_D				(1 << 3)
+# define STR_L				(1 << 4)
+# define STR_L_D			(1 << 5)
+# define STR_L_UP			(1 << 6)
+# define STR_UP				(1 << 7)
 
 /*
 ** This is the heatmap(hmap) structure.
@@ -82,18 +102,16 @@ typedef struct	s_str
 	int		enemy_last_y;
 	int		enemy_curr_x;
 	int		enemy_curr_y;
-	int		my_furthest_x;
-	int		my_furthest_xy;
-	int		my_furthest_y;
-	int		my_furthest_yx;
-	int		enemy_furthest_x;
-	int		enemy_furthest_xy;
-	int		enemy_furthest_y;
-	int		enemy_furthest_yx;
-	int		ur_border;
-	int		dx_border;
-	int		ly_border;
-	int		ry_border;
+	int		my_far_x;
+	int		my_far_xy;
+	int		my_far_y;
+	int		my_far_yx;
+	int		enemy_far_x;
+	int		enemy_far_xy;
+	int		enemy_far_y;
+	int		enemy_far_yx;
+	short	border;
+	int		enemy_quater;
 	int		start;
 	int		nks;// < -------------------
 }				t_str;
@@ -173,6 +191,7 @@ int		get_sum_redirect(t_hmap *heatmap, t_pie *piece, int x, int temp_y);
 void	update_enemy_last(t_str *strategy, int x, int y);
 void	update_enemy_curr(t_str *strategy, int x, int y);
 int		adjust_sum(t_str *strategy, int sum, int x, int y);
+void	get_quater(t_fie *filler, t_str *strategy, int x, int y);
 
 
 #endif
