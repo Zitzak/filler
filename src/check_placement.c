@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 20:02:05 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/27 16:16:50 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,34 @@
 
 int		adjust_sum(t_str *strategy, int sum, int x, int y)
 {
-	if (strategy->start == 1)
+	if (sum != 0)
 	{
-		if (strategy->map == 'r')
+		if (strategy->start == 1)
 		{
-			if (x < (strategy->enemy_far_x - 3) && (strategy->border & T_BORDER) != T_BORDER)
-				sum = sum - 25;
-			else if (x > (strategy->my_far_x) && (strategy->border & D_BORDER) != D_BORDER)
-				sum = sum - 25;
-		}
-		if (strategy->map == 'd')
-		{
-			if (y < (strategy->enemy_far_y - 3))
-				sum = sum - 25;
-		}
-		if (strategy->map == 'u')
-		{
-			
-		}
+			if (strategy->map == 'r')
+			{
+				if (x < (strategy->enemy_far_x - 3) && (strategy->border & T_BORDER) != T_BORDER)
+					sum = sum - 25;
+				else if (x > (strategy->my_far_x) && (strategy->border & D_BORDER) != D_BORDER)
+					sum = sum - 25;
+			}
+			if (strategy->map == 'd')
+			{
+				if (y < (strategy->enemy_far_y - 3))
+					sum = sum - 25;
+			}
+			if (strategy->map == 'u')
+			{
 
+			}
+
+		}
+		// if (strategy->map == 'd')
+		// {
+		// 	if ()
+		// }
+		sum = sum <= 0 ? 1 : sum;			
 	}
-	// if (strategy->map == 'd')
-	// {
-	// 	if ()
-	// }
-	sum = sum <= 0 ? 1 : sum;			
 	return (sum);
 }
 
@@ -94,6 +97,7 @@ void	update_coord_placement(t_hmap *heatmap, int sum, int x, int y)
 			heatmap->x = x;
 			heatmap->sum = sum;
 			heatmap->y = y;
+			// ft_dprintf(heatmap->fd, "x: %i, y: %i\n", heatmap->x, heatmap->y);
 		}
 	}
 }

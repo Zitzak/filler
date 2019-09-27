@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/27 16:08:36 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef	struct 	s_hmap
 	int		y;
 	int		start;
 	int		nks;// < -------------------
+	int		fd;//
 }				t_hmap;
 
 /*

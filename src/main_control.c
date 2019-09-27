@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/08 10:08:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 18:57:04 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/27 16:13:50 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		write_coordinates(t_fie *filler, t_hmap *heatmap, t_pie *piece)
 		heatmap->x = heatmap->x - (piece->first_line - 1);
 	if (piece->first_star != 1)
 		heatmap->y = heatmap->y - (piece->first_star - 1);
+	ft_dprintf(filler->fd, "x: %i, y: %i\n", heatmap->x, heatmap->y);
 	ft_printf("%i %i\n", heatmap->x, heatmap->y);
 }
 

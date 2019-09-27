@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 19:00:59 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/27 16:08:38 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap,
 	strategy->map = 's';
 	strategy->border = 0;
 	strategy->start = filler->start;
+	heatmap->fd = filler->fd;//
 }
 
 int			first_input(t_fie *filler, t_hmap *heatmap, t_str *strategy)
