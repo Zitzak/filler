@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:37 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/30 15:38:18 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/01 07:32:24 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap,
 {
 	filler->start = 0;
 	heatmap->enemy_num = -1;
+	strategy->map = 0;
 	if (filler->field_x == 15)
-		strategy->size_field = 's';
+		strategy->map |= SIZE_S;
 	else if (filler->field_x == 24)
-		strategy->size_field = 'm';
+		strategy->map |= SIZE_M;
 	else
-		strategy->size_field = 'l';
+		strategy->map |= SIZE_L;
 	strategy->down = 0;
 	strategy->up = 0;
 	strategy->left = 0;
@@ -84,9 +85,8 @@ void		init_var_first_input(t_fie *filler, t_hmap *heatmap,
 	strategy->dl_corner = 0;
 	strategy->dr_corner = 0;
 	strategy-> begin = 0;
-	strategy->map = 's';
+	strategy->map |= STR_DIAG;
 	strategy->border = 0;
-	strategy->start = 1;
 	heatmap->fd = filler->fd;//
 }
 

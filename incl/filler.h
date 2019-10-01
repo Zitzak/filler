@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/30 15:50:37 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/01 07:32:30 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct	s_pie
 
 typedef struct	s_str
 {
-	char	size_field;
 	char	map;
 	int		begin;
 	int		up;
