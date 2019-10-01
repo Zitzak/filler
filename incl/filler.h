@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 16:21:01 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/27 16:08:36 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:50:37 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "../libft/includes/libft.h"
 
 # define BUFF_SIZE_FILLER	1024
+# define START_TOP			(1 << 0)
+# define START_BOTT			(1 << 1)
 # define QUATER_1_X			(1 << 0)
 # define QUATER_2_X			(1 << 1)
 # define QUATER_3_X			(1 << 2)
@@ -32,14 +34,22 @@
 # define D_BORDER			(1 << 1)
 # define L_BORDER			(1 << 2)
 # define R_BORDER			(1 << 3)
-# define STR_R				(1 << 0)
-# define STR_R_UP			(1 << 1)
-# define STR_R_D			(1 << 2)
-# define STR_D				(1 << 3)
-# define STR_L				(1 << 4)
-# define STR_L_D			(1 << 5)
-# define STR_L_UP			(1 << 6)
+// # define STR_R				(1 << 0)
+// # define STR_R_UP			(1 << 1)
+// # define STR_R_D			(1 << 2)
+// # define STR_D				(1 << 3)
+// # define STR_L				(1 << 4)
+// # define STR_L_D			(1 << 5)
+// # define STR_L_UP			(1 << 6)
+// # define STR_UP				(1 << 7)
+# define SIZE_S				(1 << 2)
+# define SIZE_M				(1 << 3)
+# define SIZE_L				(1 << 4)
+# define STR_DIAG			(1 << 5)
+# define STR_RIGH			(1 << 6)
 # define STR_UP				(1 << 7)
+# define STR_LEFT			(1 << 8)
+# define STR_DOWN			(1 << 9)
 
 /*
 ** This is the heatmap(hmap) structure.
@@ -113,7 +123,7 @@ typedef struct	s_str
 	int		enemy_far_yx;
 	short	border;
 	int		enemy_quater;
-	int		start;
+	int		map;
 	int		nks;// < -------------------
 }				t_str;
 

@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:57 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:55:27 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,13 @@ void	print_test(t_fie *filler, t_hmap *heatmap, t_str *strategy, t_pie *piece)
 
 	//<<<<<<<<<<<<<<<<<<<<<<<VAR STRATEGY STRUYCT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	i = 0;
-	ft_dprintf(filler->fd, "size_field: %c\nheatmap_direction %c\nenemy_quater: %i\n", strategy->size_field, strategy->map, strategy->enemy_quater);
+	if ((strategy->map & SIZE_S) == SIZE_S)
+		ft_dprintf(filler->fd, "map size: s\n");
+	if ((strategy->map & SIZE_M) == SIZE_M)
+		ft_dprintf(filler->fd, "map size: m\n");
+	if ((strategy->map & SIZE_L) == SIZE_L)
+		ft_dprintf(filler->fd, "map size: l\n");
+	ft_dprintf(filler->fd, "heatmap_direction %c\nenemy_quater: %i\n", strategy->map, strategy->enemy_quater);
 	ft_dprintf(filler->fd, "enemy_num: %i\ncurrent_piece[%i][%i]\nlast_piece[%i][%i]\n", heatmap->enemy_num,
 		strategy->enemy_curr_x, strategy->enemy_curr_y, strategy->enemy_last_x, strategy->enemy_last_y);
 	ft_dprintf(filler->fd, "my_far_x: %i|%i\nmy_far_y: %i|%i\nenemy_far_x: %i|%i\nenemy_far_y: %i|%i\n",

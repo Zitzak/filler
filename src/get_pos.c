@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 16:43:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:25:26 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,12 @@ void		get_enemy_pos_up(t_fie *filler, t_str *strategy)
 void		get_furthest_pos(t_fie *filler, t_str *strategy)
 {
 	init_var_get_pos(strategy);
-	if (filler->start == 0)
+	if ((filler->start & START_BOTT) == START_BOTT)
 	{
 		get_my_pos_down(filler, strategy);
 		get_enemy_pos_up(filler, strategy);
 	}
-	if (filler->start == 1)
+	if ((filler->start & START_TOP)== START_TOP)
 	{
 		get_my_pos_up(filler, strategy);
 		get_enemy_pos_down(filler, strategy);

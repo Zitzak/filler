@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 18:14:53 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:26:31 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ void		update_enemy(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 		if (!last_placement_enemy(filler, heatmap))
 			heatmap->enemy_num = 0;
 	}
-	if (filler->start == 1)
+	if ((filler->start & START_TOP) == START_TOP)
 	{
 		get_direction_down(heatmap, strategy);
 	}
-	if (filler->start == 0)
+	if ((filler->start & START_BOTT) == START_BOTT)
 	{
 		get_direction_up(heatmap, strategy);
 	}

@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/16 16:38:56 by mgross        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:58:28 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void		find_first_piece(t_fie *filler, t_hmap *heatmap)
 		{
 			if (filler->line[i] == filler->me)
 			{
-				filler->start = 1;
-				heatmap->start = 1;
+				filler->start |= START_TOP;
+				heatmap->start = 1; // deze moet nog define
 			}
 			else
 			{
-				filler->start = 0;
+				filler->start |= START_BOTT;
 				heatmap->start = 0;
 			}
 			break ;
@@ -48,7 +48,7 @@ void		update_field(t_fie *filler, t_hmap *heatmap)
 	while (x < filler->field_x)
 	{
 		ft_get_next_line(0, &filler->line);
-		if (filler->start == -1)
+		if ((filler->start & START_BOTT) != START_BOTT && (filler->start & START_TOP) != START_TOP)
 			find_first_piece(filler, heatmap);
 		filler->field[x] = ft_strcpy(filler->field[x], (filler->line + 4));
 		ft_strdel(&filler->line);

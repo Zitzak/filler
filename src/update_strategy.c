@@ -6,7 +6,7 @@
 /*   By: Marvin <Marvin@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/26 18:59:07 by Marvin         #+#    #+#                */
-/*   Updated: 2019/09/19 19:55:09 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/09/30 15:56:40 by Marvin        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void		calc_distance_redirect(t_fie *filler, t_str *strategy, t_pie *piece)
 {
-	if (filler->start == 0)
+	if ((filler->start & START_BOTT) == START_BOTT)
 	{
 
 	}
-	if (filler->start == 1)
+	if ((filler->start & START_TOP) == START_TOP)
 	{
-		if (strategy->size_field == 's')
+		if ((strategy->map & SIZE_S) == SIZE_S)
 		{
 
 		}
-		if (strategy->size_field == 'm')
+		if ((strategy->map & SIZE_M) == SIZE_M)
 		{
 			// if (((strategy->enemy_far_x - strategy->my_far_x) <= 4 && (strategy->enemy_far_xy - strategy->my_far_xy) <= 12) || ((strategy->enemy_far_x - strategy->my_far_x) <= 0))
 			// {
