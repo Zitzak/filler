@@ -1,0 +1,47 @@
+Map	   Round   WIN/LOSE			PLAYER 1			SCORE		    SCORE			PLAYER 2					WIN/LOSE
+----------------------------------------------------------------------------------------------------------------------------------------
+							  [mgross.filler]					VS				  [abanlin.filler]
+
+00		 1		[WIN]		   mgross.filler		 104		  -		 59			   abanlin.filler				[LOSE]
+00		 2		[WIN]		   mgross.filler		 91		  -		 60			   abanlin.filler				[LOSE]
+
+01		 1		[WIN]		   mgross.filler		 249		  -		 95			   abanlin.filler				[LOSE]
+01		 2		[WIN]		   mgross.filler		 295		  -		 76			   abanlin.filler				[LOSE]
+
+Map	   Round   WIN/LOSE			PLAYER 1			SCORE		    SCORE			PLAYER 2					WIN/LOSE
+----------------------------------------------------------------------------------------------------------------------------------------
+							  [mgross.filler]					VS				  [abanlin.filler]
+
+00		 1		[WIN]		   mgross.filler		 94		  -		 69			   abanlin.filler				[LOSE]
+00		 2		[WIN]		   mgross.filler		 104		  -		 56			   abanlin.filler				[LOSE]
+
+01		 1		[WIN]		   mgross.filler		 264		  -		 88			   abanlin.filler				[LOSE]
+01		 2		[WIN]		   mgross.filler		 255		  -		 78			   abanlin.filler				[LOSE]
+
+02		 1		[WIN]		   mgross.filler		 1857	  -		 87				 abanlin.filler				[LOSE]
+02		 2		[WIN]		   mgross.filler		 1937	  -		 73				 abanlin.filler				[LOSE]
+
+Map	   Round   WIN/LOSE			PLAYER 1			SCORE		    SCORE			PLAYER 2					WIN/LOSE
+----------------------------------------------------------------------------------------------------------------------------------------
+							  [mgross.filler]					VS				  [carli.filler]
+
+00		 1		[WIN]		   mgross.filler		 135		  -		 16			   carli.filler				[LOSE]
+00		 2		[WIN]		   mgross.filler		 138		  -		 22			   carli.filler				[LOSE]
+
+01		 1		[WIN]		   mgross.filler		 275		  -		 34			   carli.filler				[LOSE]
+01		 2		[WIN]		   mgross.filler		 288		  -		 67			   carli.filler				[LOSE]
+
+02		 1		[LOSE]		  mgross.filler			798		-	935			carli.filler			[WIN]
+02		 2		[WIN]		   mgross.filler		 1968	  -		 100				 carli.filler				[LOSE]
+
+Map	   Round   WIN/LOSE			PLAYER 1			SCORE		    SCORE			PLAYER 2					WIN/LOSE
+----------------------------------------------------------------------------------------------------------------------------------------
+							  [mgross.filler]					VS				  [champely.filler]
+
+00		 1		[WIN]		   mgross.filler		 130		  -		 0			   champely.filler				[LOSE]
+00		 2		[WIN]		   mgross.filler		 159		  -		 0			   champely.filler				[LOSE]
+
+01		 1		[WIN]		   mgross.filler		 349		  -		 0			   champely.filler				[LOSE]
+01		 2		[WIN]		   mgross.filler		 324		  -		 0			   champely.filler				[LOSE]
+
+02		 1		[WIN]		   mgross.filler		 68	  -		 0				 champely.filler				[LOSE]

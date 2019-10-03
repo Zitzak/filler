@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/06 11:56:44 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/19 17:40:55 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/02 15:53:07 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int			update_game(t_fie *filler, t_hmap *heatmap, t_str *strategy,
 {
 	init_var_update(strategy, piece, heatmap);
 	update_field(filler, heatmap);
-	update_enemy(filler, heatmap, strategy);
-	update_strategy(filler, strategy, piece);
+	update_enemy(filler, heatmap);
 	update_heatmap(filler, heatmap, strategy);
-	if (update_piece(filler, piece) ==  -1)
+	if (update_piece(filler, piece) == -1)
 		return (-1);
 	return (0);
 }

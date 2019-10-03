@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/30 15:58:28 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/02 14:40:24 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		find_first_piece(t_fie *filler, t_hmap *heatmap)
 	int		i;
 
 	i = 0;
+	heatmap->start = 0;
 	while (filler->line[i] != '\0')
 	{
 		if (filler->line[i] == 'X' || filler->line[i] == 'O')
@@ -24,12 +25,12 @@ void		find_first_piece(t_fie *filler, t_hmap *heatmap)
 			if (filler->line[i] == filler->me)
 			{
 				filler->start |= START_TOP;
-				heatmap->start = 1; // deze moet nog define
+				heatmap->start |= START_TOP;
 			}
 			else
 			{
 				filler->start |= START_BOTT;
-				heatmap->start = 0;
+				heatmap->start |= START_BOTT;
 			}
 			break ;
 		}
@@ -48,7 +49,8 @@ void		update_field(t_fie *filler, t_hmap *heatmap)
 	while (x < filler->field_x)
 	{
 		ft_get_next_line(0, &filler->line);
-		if ((filler->start & START_BOTT) != START_BOTT && (filler->start & START_TOP) != START_TOP)
+		if ((filler->start & START_BOTT) != START_BOTT &&
+		(filler->start & START_TOP) != START_TOP)
 			find_first_piece(filler, heatmap);
 		filler->field[x] = ft_strcpy(filler->field[x], (filler->line + 4));
 		ft_strdel(&filler->line);

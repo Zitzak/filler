@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:21:55 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/27 10:31:55 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/01 07:56:49 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
 void		update_heatmap(t_fie *filler, t_hmap *heatmap, t_str *strategy)
 {
 	heatmap_to_zero(heatmap);
-	if (strategy->map == 'd')
+	if ((strategy->map & STR_DOWN) == STR_DOWN)
 		heatmap_from_down(heatmap);
-	else if (strategy->map == 'u')
+	else if ((strategy->map & STR_UP) == STR_UP)
 		heatmap_from_up(heatmap);
-	else if (strategy->map == 'l')
+	else if ((strategy->map & STR_LEFT) == STR_LEFT)
 		heatmap_from_left(heatmap);
-	else if (strategy->map == 'r')
+	else if ((strategy->map & STR_RIGHT) == STR_RIGHT)
 		heatmap_from_right(heatmap);
 	else
 		heatmap_to_enemy(heatmap);

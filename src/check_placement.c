@@ -6,49 +6,11 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/27 16:16:50 by Marvin        ########   odam.nl         */
+/*   Updated: 2019/10/02 15:05:22 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
-
-/*
-** Test placement of piece to up and left
-*/
-
-int		adjust_sum(t_str *strategy, int sum, int x, int y)
-{
-	if (sum != 0)
-	{
-		if (strategy->start == 1)
-		{
-			if (strategy->map == 'r')
-			{
-				if (x < (strategy->enemy_far_x - 3) && (strategy->border & T_BORDER) != T_BORDER)
-					sum = sum - 25;
-				else if (x > (strategy->my_far_x) && (strategy->border & D_BORDER) != D_BORDER)
-					sum = sum - 25;
-			}
-			if (strategy->map == 'd')
-			{
-				if (y < (strategy->enemy_far_y - 3))
-					sum = sum - 25;
-			}
-			if (strategy->map == 'u')
-			{
-
-			}
-
-		}
-		// if (strategy->map == 'd')
-		// {
-		// 	if ()
-		// }
-		sum = sum <= 0 ? 1 : sum;			
-	}
-	return (sum);
-}
-
 
 int		get_sum_redirect(t_hmap *heatmap, t_pie *piece, int x, int temp_y)
 {
@@ -92,17 +54,16 @@ void	update_coord_placement(t_hmap *heatmap, int sum, int x, int y)
 	if ((sum <= heatmap->sum || heatmap->sum == 0))
 	{
 		if (sum < heatmap->sum || heatmap->sum == 0 || (sum == heatmap->sum
-			&& heatmap->start == 1))
+			&& (heatmap->start & START_TOP) == START_TOP))
 		{
 			heatmap->x = x;
 			heatmap->sum = sum;
 			heatmap->y = y;
-			// ft_dprintf(heatmap->fd, "x: %i, y: %i\n", heatmap->x, heatmap->y);
 		}
 	}
 }
 
-int		check_placement(t_hmap *heatmap, t_pie *piece, t_str *strategy)
+int		check_placement(t_hmap *heatmap, t_pie *piece)
 {
 	int		x;
 	int		y;
@@ -118,7 +79,7 @@ int		check_placement(t_hmap *heatmap, t_pie *piece, t_str *strategy)
 		{
 			piece->star = 0;
 			piece->x = 0;
-			sum = adjust_sum(strategy, get_sum_placement(heatmap, piece, x, y), x, y);
+			sum = get_sum_placement(heatmap, piece, x, y);
 			if (sum > 0)
 			{
 				ret = 1;
