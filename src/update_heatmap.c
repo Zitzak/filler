@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:21:55 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/01 07:56:49 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 20:47:22 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		heatmap_to_zero(t_hmap *heatmap)
+static void		heatmap_to_zero(t_hmap *heatmap)
 {
 	int		x;
 	int		y;
@@ -33,7 +33,7 @@ void		heatmap_to_zero(t_hmap *heatmap)
 	}
 }
 
-void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
+static void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
 {
 	int		x;
 	int		y;
@@ -52,18 +52,9 @@ void		replace_pieces_of_self(t_fie *filler, t_hmap *heatmap)
 	}
 }
 
-void		update_heatmap(t_fie *filler, t_hmap *heatmap, t_str *strategy)
+void			update_heatmap(t_fie *filler, t_hmap *heatmap)
 {
 	heatmap_to_zero(heatmap);
-	if ((strategy->map & STR_DOWN) == STR_DOWN)
-		heatmap_from_down(heatmap);
-	else if ((strategy->map & STR_UP) == STR_UP)
-		heatmap_from_up(heatmap);
-	else if ((strategy->map & STR_LEFT) == STR_LEFT)
-		heatmap_from_left(heatmap);
-	else if ((strategy->map & STR_RIGHT) == STR_RIGHT)
-		heatmap_from_right(heatmap);
-	else
-		heatmap_to_enemy(heatmap);
+	heatmap_to_enemy(heatmap);
 	replace_pieces_of_self(filler, heatmap);
 }

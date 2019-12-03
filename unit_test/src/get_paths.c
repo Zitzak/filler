@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/03 11:35:02 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/03 17:08:28 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/14 16:29:20 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		getPathFiller_vm(t_test *result)
 	pathToFile(result, i);
 	len = strlen(result->buf);
 	result->filler_vm = strndup(result->buf, (len - 1));
-	// printf("%s\n", result->filler_vm);//<-----------------
+	printf("%s\n", result->filler_vm);//<-----------------
 	return (SUCCES);
 }
 
@@ -41,7 +41,7 @@ int		getNumRounds(t_test *result)
 		printf("Error: Invalid number of rounds\n");
 		return (ERROR);
 	}
-	// printf("numRounds:%i\n", result->numRounds);//<-----------------
+	printf("numRounds:%i\n", result->numRounds);//<-----------------
 	return (SUCCES);
 }
 
@@ -54,7 +54,7 @@ int		getPathPlayers(t_test *result)
 	result->numPlayers = getNumLines(result, result->buf);
 	if (!bufToArray(result, PLAYERS, result->numPlayers, result->array[i]))
 		return (ERROR);
-	// printTest(result->players, result->numPlayers);//<------------------
+	printTest(result->players, result->numPlayers);//<------------------
 	if (!validateInput(result->players, ".filler", result->numPlayers))
 	{
 		printf("Error: Invalid player in folder\n");
@@ -80,7 +80,7 @@ int		getPathMaps(t_test *result)
 		printf("!!Error: Invalid map in folder\n");
 		return (ERROR);
 	}
-	// printTest(result->maps, result->numMaps);//<------------------
+	printTest(result->maps, result->numMaps);//<------------------
 	return (SUCCES);
 }
 
@@ -121,7 +121,7 @@ int		getPathP1(t_test *result)
 		printf("Error: Malloc Error\n");
 		return (ERROR);
 	}
-	// printf("player 1: %s\n", result->player1);// <<--------------
+	printf("player 1: %s\n", result->player1);// <<--------------
 	return (SUCCES);
 }
 
@@ -129,18 +129,25 @@ int		getPathP2(t_test *result)
 {
 	int		i;
 
+	// write(result->fd1, "test1\n", 6);
 	i = getPosP2(result);
+	// dprintf(result->fd1, "i: %i\n", i);
+	// dprintf(result->fd1, "i: %i - pla: %s\n", i, result->array[i]);
+	// write(result->fd1, "test2\n", 6);
 	if (!strstr(result->array[i], ".filler"))
 	{
 		printf("Error: Invalid player 2\n");
 		return (ERROR);
 	}
+	// write(result->fd1, "test3\n", 6);
 	result->player2 = strdup(result->array[i]);
+	// write(result->fd1, "test4\n", 6);
 	if (!result->player2)
 	{
 		printf("Error: Malloc Error\n");
 		return (ERROR);
 	}
-	// printf("player 2: %s\n", result->player2);// <<--------------
+	// write(result->fd1, "test5\n", 6);
+	printf("player 2: %s\n", result->player2);// <<--------------
 	return (SUCCES);
 }

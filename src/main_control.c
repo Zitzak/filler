@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/08 10:08:24 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/02 15:06:00 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 20:45:15 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		write_coordinates(t_hmap *heatmap, t_pie *piece)
+static void		write_coordinates(t_hmap *heatmap, t_pie *piece)
 {
 	if (piece->first_line != 1)
 		heatmap->x = heatmap->x - (piece->first_line - 1);
@@ -21,12 +21,11 @@ void		write_coordinates(t_hmap *heatmap, t_pie *piece)
 	ft_printf("%i %i\n", heatmap->x, heatmap->y);
 }
 
-int			main_control(t_fie *filler, t_hmap *heatmap, t_str *strategy,
-			t_pie *piece)
+int				main_control(t_fie *filler, t_hmap *heatmap, t_pie *piece)
 {
 	while (1)
 	{
-		if (update_game(filler, heatmap, strategy, piece) == -1)
+		if (update_game(filler, heatmap, piece) == -1)
 			return (-1);
 		if (!check_placement(heatmap, piece))
 		{

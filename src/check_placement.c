@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/27 17:24:04 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/02 15:05:22 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 18:31:04 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		get_sum_placement(t_hmap *heatmap, t_pie *piece, int x, int y)
 	{
 		piece->y = 0;
 		temp_y = y;
-		while (piece->y < piece->collums_piece || temp_y == heatmap->size_y)
+		while (piece->y < piece->collums_piece)
 		{
 			if (!get_sum_redirect(heatmap, piece, x, temp_y))
 				return (0);

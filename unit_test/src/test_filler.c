@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/19 11:50:26 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/03 17:05:17 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 15:58:23 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		main(int argc, char **argv)
 		if (result == NULL)
 			return (ERROR);
 		init_var(result);
+		// (void)argv;
 		if (!getInput(result, argc, argv))
 			return (-1);
 		if (!runTests(result))

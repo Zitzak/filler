@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/07 18:06:32 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 16:44:22 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/14 18:30:39 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		get_offset(t_fie *filler, t_pie *piece)
+static void		get_offset(t_fie *filler, t_pie *piece)
 {
 	int		x;
 	int		ret;
@@ -35,13 +35,13 @@ void		get_offset(t_fie *filler, t_pie *piece)
 				piece->last_star = ret;
 		}
 		piece->temp_piece[x] = ft_strcpy(piece->temp_piece[x], filler->line);
-		ft_strdel(&filler->line);
+		free_line(filler);
 		x++;
 	}
 	piece->collums_piece = piece->last_star - piece->first_star + 1;
 }
 
-void		copy_piece(t_pie *piece, int x, int first_star, int i)
+static void		copy_piece(t_pie *piece, int x, int first_star, int i)
 {
 	int		y;
 	int		temp;
@@ -63,7 +63,7 @@ void		copy_piece(t_pie *piece, int x, int first_star, int i)
 	piece->piece[x][y] = '\0';
 }
 
-int			create_piece(t_pie *piece)
+static int		create_piece(t_pie *piece)
 {
 	int		x;
 	int		i;
@@ -90,7 +90,7 @@ int			create_piece(t_pie *piece)
 	return (0);
 }
 
-int			get_size_piece(t_fie *filler, t_pie *piece)
+static int		get_size_piece(t_fie *filler, t_pie *piece)
 {
 	char	*temp;
 	int		x;
@@ -105,7 +105,7 @@ int			get_size_piece(t_fie *filler, t_pie *piece)
 		temp++;
 	temp++;
 	piece->piece_y = ft_atoi(&(*temp));
-	free(filler->line);
+	free_line(filler);
 	piece->temp_piece = (char**)ft_mem_array_alloc(piece->piece_x, sizeof(char*)
 	* piece->piece_x, sizeof(char) * (piece->piece_y + 1));
 	if (piece->temp_piece == NULL)
@@ -113,7 +113,7 @@ int			get_size_piece(t_fie *filler, t_pie *piece)
 	return (0);
 }
 
-int			update_piece(t_fie *filler, t_pie *piece)
+int				update_piece(t_fie *filler, t_pie *piece)
 {
 	if (get_size_piece(filler, piece) == -1)
 		return (-1);

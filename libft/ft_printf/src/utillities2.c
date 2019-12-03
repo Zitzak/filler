@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/01 16:38:25 by mgross         #+#    #+#                */
-/*   Updated: 2019/07/16 14:37:43 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 18:50:39 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		initiate_struct(t_flags *conv, const int fd)
 	conv->width = -1;
 	conv->precision = -1;
 	conv->specifier = '\0';
+	conv->delim = 0;
 }
 
 /*

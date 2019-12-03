@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/16 13:31:35 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/02 15:54:26 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 20:45:41 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-int			last_placement_enemy(t_fie *filler, t_hmap *heatmap)
+static int			last_placement_enemy(t_fie *filler, t_hmap *heatmap)
 {
 	int		x;
 	int		y;
@@ -38,7 +38,7 @@ int			last_placement_enemy(t_fie *filler, t_hmap *heatmap)
 	return (n);
 }
 
-void		update_enemy(t_fie *filler, t_hmap *heatmap)
+void				update_enemy(t_fie *filler, t_hmap *heatmap)
 {
 	if (heatmap->enemy_num != 0)
 	{

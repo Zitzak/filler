@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/01 14:01:13 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/03 20:21:59 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 16:51:10 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,63 +22,61 @@
 #include <unistd.h>
 
 
-# define MAP00_MGROSS_ABANLIN "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_ABANLIN "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_ABANLIN "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
-# define MAP00_ABANLIN_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_ABANLIN_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_ABANLIN_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_CARLI "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_CARLI "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_CARLI "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
-# define MAP00_CARLI_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_CARLI_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_CARLI_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_CHAMPELY "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_CHAMPELY "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_CHAMPELY "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
-# define MAP00_CHAMPELY_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_CHAMPELY_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_CHAMPELY_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_GRATI "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_GRATI "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_GRATI "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
-# define MAP00_GRATI_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_GRATI_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_GRATI_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_HCAO "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_HCAO "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_HCAO "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
-# define MAP00_HCAO_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_HCAO_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_HCAO_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_SUPERJ "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_SUPERJ "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_SUPERJ "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
-# define MAP00_SUPERJ_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_SUPERJ_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_SUPERJ_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_ANNA "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_ANNA "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_ANNA "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
-# define MAP00_ANNA_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_ANNA_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_ANNA_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_JAMIE "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_JAMIE "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_JAMIE "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
-# define MAP00_JAMIE_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_JAMIE_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_JAMIE_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP00_MGROSS_LAURIS "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
-# define MAP01_MGROSS_LAURIS "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
-# define MAP02_MGROSS_LAURIS "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
-# define MAP00_LAURIS_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP01_LAURIS_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
-# define MAP02_LAURIS_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_ABANLIN "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_ABANLIN "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_ABANLIN "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/abanlin.filler > ./test_runs/filler.txt"
+// # define MAP00_ABANLIN_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_ABANLIN_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_ABANLIN_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/abanlin.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_CARLI "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_CARLI "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_CARLI "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/carli.filler > ./test_runs/filler.txt"
+// # define MAP00_CARLI_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_CARLI_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_CARLI_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/carli.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_CHAMPELY "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_CHAMPELY "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_CHAMPELY "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/champely.filler > ./test_runs/filler.txt"
+// # define MAP00_CHAMPELY_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_CHAMPELY_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_CHAMPELY_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/champely.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_GRATI "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_GRATI "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_GRATI "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/grati.filler > ./test_runs/filler.txt"
+// # define MAP00_GRATI_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_GRATI_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_GRATI_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/grati.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_HCAO "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_HCAO "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_HCAO "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/hcao.filler > ./test_runs/filler.txt"
+// # define MAP00_HCAO_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_HCAO_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_HCAO_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/hcao.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_SUPERJ "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_SUPERJ "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_SUPERJ "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/superjeannot.filler > ./test_runs/filler.txt"
+// # define MAP00_SUPERJ_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_SUPERJ_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_SUPERJ_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/superjeannot.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_ANNA "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_ANNA "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_ANNA "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/ayundina.filler > ./test_runs/filler.txt"
+// # define MAP00_ANNA_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_ANNA_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_ANNA_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/ayundina.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_JAMIE "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_JAMIE "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_JAMIE "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/wvan-ees.filler > ./test_runs/filler.txt"
+// # define MAP00_JAMIE_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_JAMIE_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_JAMIE_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/wvan-ees.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP00_MGROSS_LAURIS "../filler_vm -f ../maps/map00 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
+// # define MAP01_MGROSS_LAURIS "../filler_vm -f ../maps/map01 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
+// # define MAP02_MGROSS_LAURIS "../filler_vm -f ../maps/map02 -p1 ../players/mgross.filler -p2 ../players/lskrauci.filler > ./test_runs/filler.txt"
+// # define MAP00_LAURIS_MGROSS "../filler_vm -f ../maps/map00 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP01_LAURIS_MGROSS "../filler_vm -f ../maps/map01 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
+// # define MAP02_LAURIS_MGROSS "../filler_vm -f ../maps/map02 -p1 ../players/lskrauci.filler -p2 ../players/mgross.filler > ./test_runs/filler.txt"
 
-// # define TO_OUTPUT	" > ./resources/read.txt"
-// # define LS_PLAYERS " > ./resources/ls_players.txt"
 # define SMALL			0
 # define MEDIUM			1
 # define LARGE			2
@@ -90,11 +88,9 @@
 # define READ			"./resources/read.txt"
 # define PLAYERS		1
 # define MAPS			2
-# define BUFFSIZE_TEST 1024
+# define BUFFSIZE_TEST 	1024
 # define ERROR			0
 # define SUCCES			1
-// # define P1				(1 << 0)
-// # define P2				0
 # define FLAG_A			(1 << 0)
 # define FLAG_O			(1 << 1)
 # define FLAG_LF		(1 << 2)
@@ -151,7 +147,7 @@ void	print_player_score(t_test *result);
 int		get_args(t_test *result, int argc, char **argv);
 void	print_test_scores(t_test *result, int n);
 void	read_function(t_test *result);
-void	write_score(t_test *result, char *str);
+void	countScore(t_test *result, char *str);
 int		getPathPlayers(t_test *result);
 int		get_all_maps(t_test *result);
 void	printUsage();
@@ -186,6 +182,7 @@ void	printP2W(t_test *result, char * map, char *enemy, int round);
 void	printRoundScore(t_test *result, char * map, char *enemy, int round);
 void	printMatchUp(t_test *result, char *enemy);
 void	printMapChange(t_test *result);
+void	allPlayerOneMap(t_test *result);
 
 
 

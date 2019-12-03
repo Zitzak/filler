@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/11 12:56:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/07/17 10:18:06 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 18:49:12 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ int			ft_printf_fd(const int fd, const char *format, va_list ap)
 	int			ret;
 
 	conv = malloc(sizeof(t_flags));
+	if (conv == NULL)
+		return (-1);
 	initiate_struct(conv, fd);
 	va_copy(conv->start, ap);
 	while (*format)

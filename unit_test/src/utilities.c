@@ -6,23 +6,11 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/03 10:05:12 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/03 17:25:55 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/14 17:34:00 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/test_filler.h"
-
-void	printTest(char **array, int size)
-{
-	int		i;
-
-	i = 0;
-	while (i < size)
-	{
-		printf("%s", array[i]);
-		i++;
-	}
-}
 
 void	pathToFile(t_test *result, int i)
 {
@@ -43,7 +31,6 @@ int		validateInput(char **array, char *str, int size)
 	}
 	return (SUCCES);
 }
-
 
 void	readFileToBuf(t_test *result)
 {
@@ -117,4 +104,63 @@ int		get_flags(t_test *result, char *str)
 void	systemCall(t_test *result)
 {
 	system(result->cmd);
+}
+
+int		addStringsForCommand(t_test *result, char *map, char *enemy, char *output)
+{
+	if ((result->flags & FLAG_P1) == FLAG_P1)
+	{
+		if (strstr(enemy, result->player1))
+			return (ERROR);
+		else
+		{
+			strcpy(result->cmd, result->filler_vm);
+			strcat(result->cmd, F);
+			strcat(result->cmd, map);
+			strcat(result->cmd, P1);
+			strcat(result->cmd, result->player1);
+			strcat(result->cmd, P2);
+			strcat(result->cmd, enemy);
+			strcat(result->cmd, output);
+		}
+	}
+	else
+	{
+		if (strstr(enemy, result->player2))
+			return(ERROR);
+		else	
+		{
+			strcpy(result->cmd, result->filler_vm);
+			strcat(result->cmd, F);
+			strcat(result->cmd, map);
+			strcat(result->cmd, P1);
+			strcat(result->cmd, enemy);
+			strcat(result->cmd, P2);
+			strcat(result->cmd, result->player2);
+			strcat(result->cmd, output);
+		}
+	}
+	// dprintf(result->fd1, "systemcallString: %s\n", result->cmd);
+	return (SUCCES);
+}
+
+void		countScore(t_test *result, char *str)
+{
+	while (isdigit(*str) != 1)
+		str++;
+	result->o = atoi(str);
+	str = str + 4;
+	while (isdigit(*str) != 1)
+		str++;
+	result->x = atoi(str);
+	if (result->x > result->o)
+	{
+		result->flags |= FLAG_P2W;
+		result->score_x++;
+	}
+	else
+	{
+		result->flags |= FLAG_P1W;
+		result->score_o++;
+	}
 }

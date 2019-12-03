@@ -6,13 +6,13 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 12:05:21 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/02 14:40:24 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 20:45:59 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/filler.h"
 
-void		find_first_piece(t_fie *filler, t_hmap *heatmap)
+static void		find_first_piece(t_fie *filler, t_hmap *heatmap)
 {
 	int		i;
 
@@ -25,27 +25,31 @@ void		find_first_piece(t_fie *filler, t_hmap *heatmap)
 			if (filler->line[i] == filler->me)
 			{
 				filler->start |= START_TOP;
-				heatmap->start |= START_TOP;
 			}
 			else
 			{
 				filler->start |= START_BOTT;
-				heatmap->start |= START_BOTT;
 			}
 			break ;
 		}
 		i++;
 	}
+	heatmap->start = filler->start;
 }
 
-void		update_field(t_fie *filler, t_hmap *heatmap)
+int				update_field(t_fie *filler, t_hmap *heatmap)
 {
 	int		x;
 
 	x = 0;
-	ft_get_next_line(0, &filler->line);
+	if (ft_get_next_line(0, &filler->line) == 0)
+		return (0);
 	if (*filler->line != ' ')
+	{
+		free_line(filler);
 		ft_get_next_line(0, &filler->line);
+	}
+	free_line(filler);
 	while (x < filler->field_x)
 	{
 		ft_get_next_line(0, &filler->line);
@@ -53,7 +57,8 @@ void		update_field(t_fie *filler, t_hmap *heatmap)
 		(filler->start & START_TOP) != START_TOP)
 			find_first_piece(filler, heatmap);
 		filler->field[x] = ft_strcpy(filler->field[x], (filler->line + 4));
-		ft_strdel(&filler->line);
+		free_line(filler);
 		x++;
 	}
+	return (1);
 }

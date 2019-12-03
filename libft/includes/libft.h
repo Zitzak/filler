@@ -6,7 +6,7 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/17 18:39:18 by mgross         #+#    #+#                */
-/*   Updated: 2019/09/13 18:37:38 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/08 12:32:30 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_list			*ft_lstfind_size(t_list *head, size_t size);
 void			ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstnew(void const *content, size_t content_size);
-void			**ft_mem_array_alloc(size_t x_dim, size_t size_x, size_t size_y);
+void			**ft_mem_array_alloc(size_t x_dim, size_t size_x,
+				size_t size_y);
 void			*ft_memalloc(size_t size);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);

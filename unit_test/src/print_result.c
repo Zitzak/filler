@@ -6,11 +6,23 @@
 /*   By: mgross <mgross@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/03 09:28:46 by mgross         #+#    #+#                */
-/*   Updated: 2019/10/03 20:43:34 by mgross        ########   odam.nl         */
+/*   Updated: 2019/10/14 17:42:05 by mgross        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/test_filler.h"
+
+void	printTest(char **array, int size)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}
+}
 
 void	printP1W(t_test *result, char * map, char *enemy, int round)
 {
@@ -26,11 +38,11 @@ void	printP1W(t_test *result, char * map, char *enemy, int round)
 	else if ((result->flags & FLAG_P2) == FLAG_P2)
 	{
 		if (result->size_print == SMALL)
-			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i		 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));
+			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i		 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));
 		if (result->size_print == MEDIUM)
-			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i		 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));
+			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i		 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));
 		if (result->size_print == LARGE)
-			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i	 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));	
+			dprintf(result->fd1, "%s		 %i		[WIN]		   %s				%i	 -		%i			%s			[LOSE]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));	
 	}
 }
 
@@ -48,11 +60,11 @@ void	printP2W(t_test *result, char * map, char *enemy, int round)
 	else if ((result->flags & FLAG_P2) == FLAG_P2)
 	{
 		if (result->size_print == SMALL)
-			dprintf(result->fd1, "%s		 %i		[LOSE]		  %s				%i		-		%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));
+			dprintf(result->fd1, "%s		 %i		[LOSE]		  %s				%i		-		%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));
 		if (result->size_print == MEDIUM)
-			dprintf(result->fd1, "%s		 %i		[LOSE]		  %s				%i		-		%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));
+			dprintf(result->fd1, "%s		 %i		[LOSE]		  %s				%i		-		%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));
 		if (result->size_print == LARGE)
-			dprintf(result->fd1, "%s 		 %i		[LOSE]		  %s				%i		-	%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, strstr(result->player2, "player"));
+			dprintf(result->fd1, "%s 		 %i		[LOSE]		  %s				%i		-	%i			%s			[WIN]\n", strstr(map, "0"), round, (strrchr(enemy, '/') + 1), result->o, result->x, (strrchr(result->player2, '/') + 1));
 	}
 }
 
@@ -79,7 +91,7 @@ void	printMatchUp(t_test *result, char *enemy)
 	}
 	else if ((result->flags & FLAG_P2) == FLAG_P2)
 	{
-		dprintf(result->fd1, "							  [%s]					VS				  [%s]\n\n", (strrchr(result->player1, '/') + 1), (strrchr(enemy, '/') + 1));
+		dprintf(result->fd1, "							  [%s]					VS				  [%s]\n\n", (strrchr(enemy, '/') + 1), (strrchr(result->player2, '/') + 1));
 	}
 }
 void	printMapChange(t_test *result)
